@@ -1,18 +1,34 @@
 <template>
-<ProductCard></ProductCard>
+  <nav>
+    <router-link to="/">Главная</router-link> |
+    <router-link to="/config">Конфигуратор ПК</router-link> |
+    <router-link to="/about">О разработчике</router-link>
+  </nav>
+  <router-view/>
 </template>
-
 <script>
-import ProductCard from './components/ProductCard.vue'
+import {DataStore} from '@/DataStore.js'
 
-export default {
-  name: 'App',
-  components: {
-    ProductCard
-}
-}
+  export default {
+    name: "App",
+    setup() {
+      fetch('http://localhost:8080/pc_details.json')
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                  // DataStore.motherboards = data.motherboard
+                  // console.log(DataStore.motherboards)
+                  for(let key in data) {
+                    // console.log(data[key])
+                    DataStore[key] = data[key]
+                  }
+                  // console.log(DataStore.motherboard[3])
+                })
+                .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
+
+    }
+  }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -20,6 +36,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

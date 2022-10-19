@@ -1,6 +1,7 @@
 {
   "motherboard": [
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/58e5e7cf3810738ee7099c4856db0fc0/2ea6a987906a2592d71d836af5ccf90b1a3f09fa69db96e3b45a249e6d74bebe.jpg.webp",
       "model": "GIGABYTE H310M H (rev. 1.1)",
       "formFactor": "Micro-ATX",
       "socket": "LGA 1151-v2",
@@ -28,6 +29,7 @@
       "price": "2799 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/8ed7ed982051dff8129634aa61752ab5/a36b6586112a06ffc32442056b605f018a281f8fe1cd46e35b6b5fb9ccb16e6c.jpg.webp",
       "model": "GIGABYTE GA-A320M-H",
       "formFactor": "Micro-ATX",
       "socket": "AM4",
@@ -62,6 +64,7 @@
       "price": "3999 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/2c692166504fd8e21e9673f8adca3435/78f6f414f0bd4be0e3d17411a8b6d8d2937b190a6a6f66f616e7b24ce3909386.jpg.webp",
       "model": "ASRock H310CM-DVS",
       "formFactor": "Micro-ATX",
       "socket": "LGA 1151-v2",
@@ -89,6 +92,7 @@
       "price": "3199 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/112f30973c07b1947b63eacdc16b6379/cc301188c00043c12f571c3727daa224a415d2d9f8d4d89a0c11ab16964e0047.jpg.webp",
       "model": "Intel BLKDP43BF",
       "formFactor": "Standard-ATX",
       "socket": "LGA 775",
@@ -116,6 +120,7 @@
       "price": "3199 руббей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/301f2dab512645fca72872427bc05a3f/cf54881a9b0c2b361439c5f314e65a25486587ad094ad23185435d56ec8975c5.jpg.webp",
       "model": "ASUS PRIME A320M-A",
       "formFactor": "Micro-ATX",
       "socket": "AM4",
@@ -152,6 +157,7 @@
   ],
   "cpu": [
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/7b1caad83ce55a630a6e52ea7cc0bd94/a08a35fb774d2f1ca95d9e60a7b8663f95c522fada5ca215385348e03b73183d.jpg.webp",
       "model": "Intel Core i5-9400F",
       "socket": "LGA 1151-v2",
       "numberCores": 6,
@@ -170,6 +176,7 @@
       "price": "13499 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/a205969a500a34dd14a3610d08b7610e/4cb3614facfa60e90a5c02b553c45dd114b1b0095fc27fce0ea4c196b17b872c.jpg.webp",
       "model": "AMD Ryzen 3 1200",
       "socket": "AM4",
       "numberCores": 4,
@@ -188,6 +195,7 @@
       "price": "6499 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/5b4c854ce2d305114d0964d066c631d8/8e073cffadc120d2d2d3cba994bd38e4c81b73796abc4f92e2ca93e3aa34e263.jpg.webp",
       "model": "AMD FX-4300",
       "socket": "AM3+",
       "numberCores": 4,
@@ -206,6 +214,7 @@
       "price": "1799 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/a4a775d3e7d65b04db9a1cd8036f48ea/d6c2ee267dd987756bad6fefbed56bea95b378201e939e55295cf484df1d9e08.jpg.webp",
       "model": "Intel Celeron G5905",
       "socket": "LGA 1200",
       "numberCores": 2,
@@ -224,6 +233,7 @@
       "price": "3499 рублей"
     },
     {
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/104d6e107df9e2864314aa3ab7ef3ce7/3b75a0db343bc14e9707d10929d0e92b4c9bcb6672839f3a1eb1adf0a4258434.jpg.webp",
       "model": "Intel Celeron G6900",
       "socket": "LGA 1700",
       "numberCores": 2,
@@ -244,6 +254,7 @@
   ],
   "ram": [
     {
+      "productImageSrc" : "",
       "model": " AMD Radeon R7 Performance Series R744G2133U1S-U",
       "typeRAM": "DDR4",
       "capacity": "4 ГБ",
@@ -253,6 +264,7 @@
       "price": "950 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": " ExeGate Value Special EX287012RUS",
       "typeRAM": "DDR4",
       "capacity": "4 ГБ",
@@ -262,6 +274,7 @@
       "price": "1599 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": " Patriot Signature PSD22G8002S",
       "typeRAM": "DDR2",
       "capacity": "2 ГБ",
@@ -271,6 +284,7 @@
       "price": "950 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": " AMD Radeon R5 Entertainment Series R5S34G1601U1S",
       "typeRAM": "DDR3",
       "capacity": "4 ГБ",
@@ -280,6 +294,7 @@
       "price": "999 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": " AMD Radeon R7 Performance Series  R748G2400U2S-U",
       "typeRAM": "DDR4",
       "capacity": "8 ГБ",
@@ -291,6 +306,7 @@
   ],
   "powerSupply": [
     {
+      "productImageSrc" : "",
       "model": "GiNZZU CA450",
       "power": "450 Вт",
       "formFactor": "ATX",
@@ -306,6 +322,7 @@
       "price": "1399 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "ExeGate 80+ 500PPH-LT-S",
       "power": "500 Вт",
       "formFactor": "ATX",
@@ -321,6 +338,7 @@
       "price": "3099 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Chieftec SOLID 500W",
       "power": "500 Вт",
       "formFactor": "ATX",
@@ -336,6 +354,7 @@
       "price": "2899 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "GiNZZU PC700",
       "power": "700 Вт",
       "formFactor": "ATX",
@@ -351,6 +370,7 @@
       "price": "2999 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "ExeGate 800PPX",
       "power": "800 Вт",
       "formFactor": "ATX",
@@ -368,6 +388,7 @@
   ],
   "hdd": [
     {
+      "productImageSrc" : "",
       "model": "Toshiba P300",
       "formFactor": "3.5",
       "capacity": "1 ТБ",
@@ -377,6 +398,7 @@
       "price": "3899 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "WD Blue WD20EZAZ",
       "formFactor": "3.5",
       "capacity": "2 ТБ",
@@ -386,6 +408,7 @@
       "price": "5799 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Seagate BarraCuda Pro ST1000LM049",
       "formFactor": "2.5",
       "capacity": "1 ТБ",
@@ -395,6 +418,7 @@
       "price": "6499 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Seagate Exos 7E8 ST6000NM0095",
       "formFactor": "3.5",
       "capacity": "6 ТБ",
@@ -404,6 +428,7 @@
       "price": "19799 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Toshiba MG08 MG08ADA400E",
       "formFactor": "3.5",
       "capacity": "4 ТБ",
@@ -415,6 +440,7 @@
   ],
   "ssd": [
     {
+      "productImageSrc" : "",
       "model": "AMD Radeon R5 Series R5SL120G",
       "formFactor": "2.5",
       "capacity": "120 ГБ",
@@ -427,6 +453,7 @@
       "price": "999 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Sandisk Ultra 3D  SDSSDH3-250G-G25",
       "formFactor": "2.5",
       "capacity": "250 ГБ",
@@ -439,6 +466,7 @@
       "price": "0 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Patriot Burst Elite PBE192TS25SSDR",
       "formFactor": "2.5",
       "capacity": "1920 ГБ",
@@ -451,6 +479,7 @@
       "price": "17999 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Kingston A400 SA400S37/960G]",
       "formFactor": "2.5",
       "capacity": "960 ГБ",
@@ -463,6 +492,7 @@
       "price": "17899 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "QUMO Novation 3D Q3DT-480GAEN",
       "formFactor": "2.5",
       "capacity": "480 ГБ",
@@ -477,6 +507,7 @@
   ],
   "computerCase": [
     {
+      "productImageSrc" : "",
       "model": "ExeGate BA-202",
       "formFactor": "Mini-Tower",
       "supportedFormFactorMotherboards": ["Micro-ATX"],
@@ -488,6 +519,7 @@
       "price": "1699 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "DEXP DC-302G",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": ["Micro-ATX", "Standard-ATX"],
@@ -499,6 +531,7 @@
       "price": "0 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "Accord ACC-CT295RGB",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": ["Standard-ATX"],
@@ -510,6 +543,7 @@
       "price": "3499 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "ExeGate EVO-7215-NPX500",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": [
@@ -525,6 +559,7 @@
       "price": "3499 рублей"
     },
     {
+      "productImageSrc" : "",
       "model": "AeroCool CS-101",
       "formFactor": "Slim",
       "supportedFormFactorMotherboards": ["Micro-ATX", "Mini-ITX"],

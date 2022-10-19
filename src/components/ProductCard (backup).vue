@@ -21,11 +21,17 @@
 
 <template>
     <div class="product-card">
-        <div>
-            <img :src="productImageSrc">
-        </div>
-        <div><h3>{{productTitle}}</h3></div>
-        <div v-html="productFullDescription"></div>
+        <img :src="productImageSrc">
+        <!-- <div>Image</div> -->
+        <div>{{productTitle}}</div>
+        <div>{{json}}</div>
+        <button @click="getJSON">Получить значения из JSON</button>
+        <div>{{tmp}}</div>
+        <button @click="tmpString">Получить описание на русском</button>
+        <div v-html="productDescription"></div>
+        <button @click="creaeteDescription">Сформировать описание</button>
+        <br>
+        <button @click="createProductCard">Сформировать карточку товара</button>
     </div>
 </template>
 
@@ -36,31 +42,46 @@ export default {
     name: 'ProductCard',
     data() {
         return {
-            productImageSrc: this.product.productImageSrc,
-            productTitle: this.product.model,
-            productFullDescription: "",
-            productShortDescription: ""
+            json: {},
+            tmp: "",
+            productDescription: "",
+            productImageSrc: "",
+            productTitle: ""
         }
-    },
-    props: {
-        product: Object
     },
     methods: {
-
-        // передавать тип оборудования как props и использовать его в этой функции
-        // 
-        // Сдалать краткое описание через productShortDescription и выводить его в конфигураторе, а полное описание на странице товара
+        getJSON: function () {
+            fetch('http://localhost:8080/pc_details.json')
+                .then(response => response.json())
+                .then(response => this.json = response)
+                .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
+        },
+        tmpString: function () {
+            // this.tmp = "Чипсет : " + this.json.motherboard[0].chipset
+            // console.log(this.json.motherboard[0])
+            this.productTitle = this.json.motherboard[0].model
+            this.productImageSrc = this.json.motherboard[0].productImageSrc
+            motherboard.set(this.json.motherboard[0])
+            this.tmp = motherboard.getMap()
+        },
         creaeteDescription: function () {
-            // this.productShortDescription += this.product.
-
-            motherboard.set(this.product)
-            motherboard.getMap().forEach((value, key) => {
-                this.productFullDescription += `${key}: ${value} <br>`
+            //Функция преобразования Map в человеческий вид для вывода
+            // console.log(typeof(this.tmp))
+            this.tmp.forEach((value, key) => {
+                this.productDescription += `${key}: ${value} <br>`
             });
-        }
-    },
-    created() {
-        this.creaeteDescription()
+            // for (let item of this.tmp) {
+            //     this.productCard += item + "<br>"        
+            // }
+        //     for(let key in this.tmp) {
+        //         this.productCard += key + " : " + this.tmp[key] + "<br>"
+        //     }
+        },
+        // createProductCard: function () {
+        //     this.getJSON()
+        //     this.tmpString()
+        //     this.creaeteDescription()
+        // }
     }
 }
 </script>
