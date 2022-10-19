@@ -66,12 +66,21 @@ export default {
                     break
                 }
                 case 'cpu': {
+                    // import(`@/models/${this.productType}`)
                     cpu.set(this.product)
                     cpu.getMap().forEach((value, key) => {
                         this.productFullDescription += `${key}: ${value} <br>`
                     });
                     break
                 }
+                // case 'cpu': {
+                //     console.log(this.productType)
+                //     this.productType.set(this.product)
+                //     this.productType.getMap().forEach((value, key) => {
+                //         this.productFullDescription += `${key}: ${value} <br>`
+                //     });
+                //     break
+                // }
             }
         }
     },
