@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { motherboard } from '@/motherboard'
+import { motherboard } from '@/models/motherboard'
 
 export default {
     name: 'ProductCard',

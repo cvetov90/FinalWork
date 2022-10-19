@@ -24,13 +24,16 @@
         <div>
             <img :src="productImageSrc">
         </div>
-        <div><h3>{{productTitle}}</h3></div>
+        <div>
+            <h3>{{productTitle}}</h3>
+        </div>
         <div v-html="productFullDescription"></div>
     </div>
 </template>
 
 <script>
-import { motherboard } from '@/motherboard'
+import { motherboard } from '@/models/motherboard'
+import { cpu } from '@/models/cpu'
 
 export default {
     name: 'ProductCard',
@@ -43,7 +46,8 @@ export default {
         }
     },
     props: {
-        product: Object
+        product: Object,
+        productType: String
     },
     methods: {
 
@@ -52,11 +56,23 @@ export default {
         // Сдалать краткое описание через productShortDescription и выводить его в конфигураторе, а полное описание на странице товара
         creaeteDescription: function () {
             // this.productShortDescription += this.product.
+            switch (this.productType) {
 
-            motherboard.set(this.product)
-            motherboard.getMap().forEach((value, key) => {
-                this.productFullDescription += `${key}: ${value} <br>`
-            });
+                case 'motherboard': {
+                    motherboard.set(this.product)
+                    motherboard.getMap().forEach((value, key) => {
+                        this.productFullDescription += `${key}: ${value} <br>`
+                    });
+                    break
+                }
+                case 'cpu': {
+                    cpu.set(this.product)
+                    cpu.getMap().forEach((value, key) => {
+                        this.productFullDescription += `${key}: ${value} <br>`
+                    });
+                    break
+                }
+            }
         }
     },
     created() {
@@ -79,7 +95,8 @@ img {
     width: 30%;
     height: 400px;
     border: 1px solid black;
-    border-radius: 30px;
+    margin: 15px;
+    /* border-radius: 30px; */
     /* box-shadow: 5px 5px 5px gray; */
 }
 </style>

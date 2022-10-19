@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-    <!-- <ProductCard :product="data.cpu[0]"></ProductCard> -->
-    <div v-for="product in data.motherboard" :key="product.model">
-      <ProductCard :product="product"></ProductCard>
-    </div>
-<!-- сократить запись, сделать цикл в цикле и передавать тип оборудования -->
-    <div v-for="product in data.cpu" :key="product.model">
-      <ProductCard :product="product"></ProductCard>
+    <div v-for="productType in Object.keys(data)" :key="productType">
+      <div>
+        <h1>{{productType}}</h1>
+      </div>
+      <div class="container">
+        <ProductCard v-for="product in data[productType]" :key="product.model" :product="product"
+          :product-type="productType"></ProductCard>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +15,7 @@
 <script>
 // @ is an alias to /src
 import ProductCard from '@/components/ProductCard.vue'
-import {DataStore} from '@/DataStore.js'
+import { DataStore } from '@/DataStore.js'
 
 export default {
   name: 'HomeView',
@@ -28,3 +29,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+}
+</style>
