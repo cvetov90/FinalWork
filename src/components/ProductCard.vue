@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { motherboard } from '@/models/motherboard'
-import { cpu } from '@/models/cpu'
+// import { motherboard } from '@/models/motherboard'
+// import { cpu } from '@/models/cpu'
 
 export default {
     name: 'ProductCard',
@@ -56,32 +56,50 @@ export default {
         // Сдалать краткое описание через productShortDescription и выводить его в конфигураторе, а полное описание на странице товара
         creaeteDescription: function () {
             // this.productShortDescription += this.product.
-            switch (this.productType) {
+            // switch (this.productType) {
 
-                case 'motherboard': {
-                    motherboard.set(this.product)
-                    motherboard.getMap().forEach((value, key) => {
-                        this.productFullDescription += `${key}: ${value} <br>`
-                    });
-                    break
-                }
-                case 'cpu': {
-                    // import(`@/models/${this.productType}`)
-                    cpu.set(this.product)
-                    cpu.getMap().forEach((value, key) => {
-                        this.productFullDescription += `${key}: ${value} <br>`
-                    });
-                    break
-                }
-                // case 'cpu': {
-                //     console.log(this.productType)
-                //     this.productType.set(this.product)
-                //     this.productType.getMap().forEach((value, key) => {
-                //         this.productFullDescription += `${key}: ${value} <br>`
-                //     });
-                //     break
-                // }
-            }
+            //     case 'motherboard': {
+            //         motherboard.set(this.product)
+            //         motherboard.getMap().forEach((value, key) => {
+            //             this.productFullDescription += `${key}: ${value} <br>`
+            //         });
+            //         break
+            //     }
+            //     case 'cpu': {
+            //         // import(`@/models/${this.productType}`)
+            //         cpu.set(this.product)
+            //         cpu.getMap().forEach((value, key) => {
+            //             this.productFullDescription += `${key}: ${value} <br>`
+            //         });
+            //         break
+            //     }
+            // }
+
+// РАБОТАЕТ
+        //    let imp = await import(`@/models/${this.productType}`)
+        //    console.log(imp[this.productType])
+        //    await imp[this.productType].set(this.product)
+        //    imp[this.productType].getMap().forEach((value, key) => {
+        //                   this.productFullDescription += `${key}: ${value} <br>`
+        //               });
+
+        import(`@/models/${this.productType}`)
+            .then(obj => {
+                obj[this.productType].set(this.product)
+                obj[this.productType].getMap().forEach((value, key) => {
+                           this.productFullDescription += `${key}: ${value} <br>`
+                       })
+            })
+            .catch(err => alert(err))
+
+            // .then(obj => {
+            //     imp.set(this.product)
+            //     console.log(obj)
+            //     obj.getMap().forEach((value, key) => {
+            //              this.productFullDescription += `${key}: ${value} <br>`
+            //          });
+            // })
+            // .catch(err => alert(err))
         }
     },
     created() {
