@@ -5,7 +5,7 @@
         <h1>{{productType}}</h1>
       </div>
       <div class="container">
-        <ProductCard v-for="product in data[productType]" :key="product.model" :product="product"
+        <ProductCard v-for="productObject in data[productType]" :key="productObject.model" :product-object="productObject"
           :product-type="productType"></ProductCard>
       </div>
     </div>
