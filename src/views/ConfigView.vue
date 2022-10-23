@@ -18,7 +18,7 @@ import ProductCard from '@/components/ProductCard.vue'
 import { DataStore } from '@/DataStore.js'
 
 export default {
-  name: 'HomeView',
+  name: 'ConfigView',
   data() {
     return {
       data: DataStore

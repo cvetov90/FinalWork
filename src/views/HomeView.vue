@@ -34,7 +34,7 @@
 // @ is an alias to /src
 
 export default {
-  name: 'ConfigView',
+  name: 'HomeView',
   // components: {
   //   ProductCard
   // }

@@ -1,4 +1,6 @@
-export const DataStore = {
+import { reactive } from "vue";
+
+export const DataStore = reactive({
     motherboard: [],
     cpu: [],
     ram: [],
@@ -6,4 +8,4 @@ export const DataStore = {
     hdd: [],
     ssd: [],
     computerCase: [],
-}
+})
