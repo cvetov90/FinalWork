@@ -3,24 +3,24 @@
 
     <div class="col-3">
       <h3>Draggable 1</h3>
-
       <div v-for="productType in Object.keys(data)" :key="productType">
-        <draggable class="list-group container" :list="data[productType]" group="people" @change="log" itemKey="name">
+        <draggable class="list-group container" :list="data[productType]" :group="{ name: 'people', pull: 'clone', put: false }" @change="log" itemKey="model">
           <template #item="{ element }">
-              <ProductCard :product-object="element" :product-type="productType"></ProductCard>
+            <ProductCard :product-object="element" :product-type="productType"></ProductCard>
           </template>
         </draggable>
       </div>
-
     </div>
 
     <div class="col-3">
       <h3>Draggable 2</h3>
-      <draggable class="list-group" :list="list2" group="people" @change="log" itemKey="name">
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
+      <div v-for="productType in Object.keys(data)" :key="productType">
+      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="log" itemKey="model">
+        <template #item="{ element }">
+          <ProductCard v-if="element.model" :product-object="element" :product-type="productType"></ProductCard>
         </template>
       </draggable>
+      </div>
     </div>
 
     <!-- <rawDisplayer class="col-3" :value="list1" title="List 1" /> -->
@@ -35,8 +35,8 @@ import ProductCard from '@/components/ProductCard.vue'
 
 export default {
   name: "TestView",
-  display: "Two Lists",
-  order: 1,
+  display: "clone",
+  order: 2,
   components: {
     draggable,
     ProductCard,
@@ -49,11 +49,7 @@ export default {
         { name: "Jean", id: 3 },
         { name: "Gerard", id: 4 }
       ],
-      list2: [
-        { name: "Juan", id: 5 },
-        { name: "Edgard", id: 6 },
-        { name: "Johnson", id: 7 }
-      ],
+      list2: [],
       data: DataStore
     };
   },
@@ -80,9 +76,19 @@ export default {
 .list-group {
   border: 1px solid black;
 }
-.container {
+
+.list-group-constructor {
+  min-height: 100vh;
+}
+
+.container,
+.row {
   display: flex;
   flex-direction: row;
+}
+
+.col-3 {
+  width: 50%;
 }
 </style>
 
