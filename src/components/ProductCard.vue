@@ -61,7 +61,7 @@ export default {
                            this.productFullDescription += `${key}: ${value} <br>`
                        })
             })
-            .catch(err => alert(err))
+            // .catch(err => alert(err))
         }
     },
     created() {

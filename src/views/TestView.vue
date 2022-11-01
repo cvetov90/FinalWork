@@ -1,0 +1,129 @@
+<template>
+  <div class="row">
+
+    <div class="col-3">
+      <h3>Draggable 1</h3>
+
+      <div v-for="productType in Object.keys(data)" :key="productType">
+        <draggable class="list-group container" :list="data[productType]" group="people" @change="log" itemKey="name">
+          <template #item="{ element }">
+              <ProductCard :product-object="element" :product-type="productType"></ProductCard>
+          </template>
+        </draggable>
+      </div>
+
+    </div>
+
+    <div class="col-3">
+      <h3>Draggable 2</h3>
+      <draggable class="list-group" :list="list2" group="people" @change="log" itemKey="name">
+        <template #item="{ element, index }">
+          <div class="list-group-item">{{ element.name }} {{ index }}</div>
+        </template>
+      </draggable>
+    </div>
+
+    <!-- <rawDisplayer class="col-3" :value="list1" title="List 1" /> -->
+
+    <!-- <rawDisplayer class="col-3" :value="list2" title="List 2" /> -->
+  </div>
+</template>
+<script>
+import draggable from 'vuedraggable'
+import { DataStore } from '@/DataStore.js'
+import ProductCard from '@/components/ProductCard.vue'
+
+export default {
+  name: "TestView",
+  display: "Two Lists",
+  order: 1,
+  components: {
+    draggable,
+    ProductCard,
+  },
+  data() {
+    return {
+      list1: [
+        { name: "John", id: 1 },
+        { name: "Joao", id: 2 },
+        { name: "Jean", id: 3 },
+        { name: "Gerard", id: 4 }
+      ],
+      list2: [
+        { name: "Juan", id: 5 },
+        { name: "Edgard", id: 6 },
+        { name: "Johnson", id: 7 }
+      ],
+      data: DataStore
+    };
+  },
+  methods: {
+    add: function () {
+      this.list.push({ name: "Juan" });
+    },
+    replace: function () {
+      this.list = [{ name: "Edgard" }];
+    },
+    clone: function (el) {
+      return {
+        name: el.name + " cloned"
+      };
+    },
+    log: function (evt) {
+      window.console.log(evt);
+    }
+  }
+};
+</script>
+
+<style>
+.list-group {
+  border: 1px solid black;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+</style>
+
+<!-- <template>
+  <draggable v-model="myArray" group="people" @start="drag = true" @end="drag = false" item-key="id">
+    <template #item="{ element }">
+      <div>
+        {{ element.name }} - {{ element.testKey }}
+        <img :src="element.src">
+      </div>
+    </template>
+  </draggable>
+
+  <rawDisplayer :value="myArray" title="myArray" />
+
+  <rawDisplayer class="col-3" :value="list2" title="List 2" />
+</template>
+
+<script>
+import draggable from 'vuedraggable'
+
+export default {
+  name: 'TestView',
+  data() {
+    return {
+      drag: false,
+      myArray: [
+        { name: "Jon", id: 1, testKey: "Тестовой значение", src: "https://c.dns-shop.ru/thumb/st1/fit/500/500/2c248571878532213684f4121779be9e/6853d3037b362b91ef6084eb43da5ddfd6d0f9078b1510603b6db4170def796a.jpg.webp" },
+        { name: "Alice", id: 2, testKey: "Тестовой значение", src: "https://c.dns-shop.ru/thumb/st1/fit/500/500/58e5e7cf3810738ee7099c4856db0fc0/2ea6a987906a2592d71d836af5ccf90b1a3f09fa69db96e3b45a249e6d74bebe.jpg.webp" }
+      ]
+    }
+  },
+  components: {
+    draggable,
+  }
+}
+</script>
+
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+}
+</style> -->

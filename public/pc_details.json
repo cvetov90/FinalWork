@@ -254,8 +254,8 @@
   ],
   "ram": [
     {
-      "productImageSrc" : "",
-      "model": " AMD Radeon R7 Performance Series R744G2133U1S-U",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/20b3d328f2c0e9800a131893c26d4a76/6b35fbce841729a65617865e026af84d35c5333412a1b1996352e44736a1773d.jpg.webp",
+      "model": "AMD Radeon R7 Performance Series R744G2133U1S-U",
       "typeRAM": "DDR4",
       "capacity": "4 ГБ",
       "formFactor": "DIMM",
@@ -264,8 +264,8 @@
       "price": "950 рублей"
     },
     {
-      "productImageSrc" : "",
-      "model": " ExeGate Value Special EX287012RUS",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/75c99de6c9c1d8af7fad733785b02347/b6422b9a47aa2beb202b9b2aff655d8cb3d823368c74e6defee0cdf9884a4fad.jpg.webp",
+      "model": "ExeGate Value Special EX287012RUS",
       "typeRAM": "DDR4",
       "capacity": "4 ГБ",
       "formFactor": "DIMM",
@@ -274,8 +274,8 @@
       "price": "1599 рублей"
     },
     {
-      "productImageSrc" : "",
-      "model": " Patriot Signature PSD22G8002S",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/3318e50212dfcd1942d5dc1a6cda5db4/989c81a5dc60a9aedd9565f769e5dfa80f8522c3ad6409024556f6a3257720ef.jpg.webp",
+      "model": "Patriot Signature PSD22G8002S",
       "typeRAM": "DDR2",
       "capacity": "2 ГБ",
       "formFactor": "SODIMM",
@@ -284,8 +284,8 @@
       "price": "950 рублей"
     },
     {
-      "productImageSrc" : "",
-      "model": " AMD Radeon R5 Entertainment Series R5S34G1601U1S",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/03ca13373cd8a8c92ca43d335d04a7bd/a6d3b7d9752ea17d1c299c3d0832943d8ac957ab1bad7baa1cee8ffd4eea9a1d.jpg.webp",
+      "model": "AMD Radeon R5 Entertainment Series R5S34G1601U1S",
       "typeRAM": "DDR3",
       "capacity": "4 ГБ",
       "formFactor": "DIMM",
@@ -294,8 +294,8 @@
       "price": "999 рублей"
     },
     {
-      "productImageSrc" : "",
-      "model": " AMD Radeon R7 Performance Series  R748G2400U2S-U",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/1bb404d37cdfd676601b5d0a5880d28b/f76d08bd4e32def84ec72f4220e49cbb4648b811cf11d4ed739419beb151358f.jpg.webp",
+      "model": "AMD Radeon R7 Performance Series  R748G2400U2S-U",
       "typeRAM": "DDR4",
       "capacity": "8 ГБ",
       "formFactor": "DIMM",
@@ -306,7 +306,7 @@
   ],
   "powerSupply": [
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/ae311a1e4e1308ebc3adc2b750896df7/d91c80fd53aefd16dad66453a67b9233e5e9cb4ac781468db51da81d10fdebd1.jpg.webp",
       "model": "GiNZZU CA450",
       "power": "450 Вт",
       "formFactor": "ATX",
@@ -322,7 +322,7 @@
       "price": "1399 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/8a7e85de053d465490fdc1d61f24b783/ff4446b677f265acb5104a9504af7c1896e03afd24a1814df74b36d32e02e435.jpg.webp",
       "model": "ExeGate 80+ 500PPH-LT-S",
       "power": "500 Вт",
       "formFactor": "ATX",
@@ -338,7 +338,7 @@
       "price": "3099 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/8306c2ba9ae1d848233fe2ecbfa5976e/fafd20442850b1e276a1c8e555e3dd494952ed0e6913ec8c957714e50e49c62d.jpg.webp",
       "model": "Chieftec SOLID 500W",
       "power": "500 Вт",
       "formFactor": "ATX",
@@ -354,7 +354,7 @@
       "price": "2899 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/41e6330deb7f6cee7b04a1ce79a4cab8/cea965a286f320409379c23593994900add48310d92a45c8ea2eab4ab86e53dc.jpg.webp",
       "model": "GiNZZU PC700",
       "power": "700 Вт",
       "formFactor": "ATX",
@@ -370,7 +370,7 @@
       "price": "2999 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/87a755c364c7742fe543254ed310916d/a46173d6cb16b7abf9fecf7283aa89eaa9c8c3f113259082e94a7629bbe660e0.jpg.webp",
       "model": "ExeGate 800PPX",
       "power": "800 Вт",
       "formFactor": "ATX",
@@ -388,7 +388,7 @@
   ],
   "hdd": [
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/cb7e0bee31c7dc7669efdc2e8f7bd38c/db70a181fa76ea5576278d741126b473110037ffc7fd2e60896d5c516815a96d.jpg.webp",
       "model": "Toshiba P300",
       "formFactor": "3.5",
       "capacity": "1 ТБ",
@@ -398,7 +398,7 @@
       "price": "3899 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/9d642e6862d62364e2f8db47955ebcfb/3c995467f29eacafed73f4297fab6da8143b3962699361c299378a1d5b557363.jpg.webp",
       "model": "WD Blue WD20EZAZ",
       "formFactor": "3.5",
       "capacity": "2 ТБ",
@@ -408,7 +408,7 @@
       "price": "5799 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/37b2431c34d226fdfb2d2583a1fcc4f7/5925497c06cc3ad16b79736ef0a42292c3891030d102207a77aa8d8792c14439.jpg.webp",
       "model": "Seagate BarraCuda Pro ST1000LM049",
       "formFactor": "2.5",
       "capacity": "1 ТБ",
@@ -418,7 +418,7 @@
       "price": "6499 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/878c618b95a64915994bc3e79753862d/fcb2801ae8ad754f642a5d8a9439ef651455a4d548e00e5075ac6f6d23b50ff7.jpg.webp",
       "model": "Seagate Exos 7E8 ST6000NM0095",
       "formFactor": "3.5",
       "capacity": "6 ТБ",
@@ -428,7 +428,7 @@
       "price": "19799 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/3d7a09e14a9a0502878c4124d851eab3/e77504f5a6fdf934c975cd3bd42ddf54002c253d802ded25350e376970e8adf4.jpg.webp",
       "model": "Toshiba MG08 MG08ADA400E",
       "formFactor": "3.5",
       "capacity": "4 ТБ",
@@ -440,7 +440,7 @@
   ],
   "ssd": [
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/44b9e450d3b0be7a89d600b353107720/09ca3716d8d7187f8a524f05882fffbb0eb65274719f8ee0098d7675455b8bf1.jpg.webp",
       "model": "AMD Radeon R5 Series R5SL120G",
       "formFactor": "2.5",
       "capacity": "120 ГБ",
@@ -453,7 +453,7 @@
       "price": "999 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/8c1f72c1744726d26508fa35169a370d/059b47af575843b31a0b8340c61b9df71fd6983452862e5f5a9472d83220c521.jpg.webp",
       "model": "Sandisk Ultra 3D  SDSSDH3-250G-G25",
       "formFactor": "2.5",
       "capacity": "250 ГБ",
@@ -466,7 +466,7 @@
       "price": "0 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/1de85a6ddaf1b9d9191c2014756c3257/1523aa9caa13b2d8bd7de5f66bb43fb6cc987413982a532a5d982833f693e3c4.jpg.webp",
       "model": "Patriot Burst Elite PBE192TS25SSDR",
       "formFactor": "2.5",
       "capacity": "1920 ГБ",
@@ -479,8 +479,8 @@
       "price": "17999 рублей"
     },
     {
-      "productImageSrc" : "",
-      "model": "Kingston A400 SA400S37/960G]",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/f85f5d2c779ce1e9670cfa389d41e837/fd1c4ee90c1980e5d0f5c2fc709a1cca9da4e4283628da4609330fa0359d99e4.jpg.webp",
+      "model": "Kingston A400 SA400S37/960G",
       "formFactor": "2.5",
       "capacity": "960 ГБ",
       "interface": "sata",
@@ -492,7 +492,7 @@
       "price": "17899 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/0bb27588f71eed56322d1f2b1dcef2ec/e676b74a29b5a3f86ef62c686b2a892eb01e857646a30fb4fdc811078b99fabd.jpg.webp",
       "model": "QUMO Novation 3D Q3DT-480GAEN",
       "formFactor": "2.5",
       "capacity": "480 ГБ",
@@ -507,7 +507,7 @@
   ],
   "computerCase": [
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/97e46ba0125d750a47cc3f320de05997/c321e677382f3a6fe4ed19ba6f2ad5c0eb93a9459518a3db07070b05a5528399.jpg.webp",
       "model": "ExeGate BA-202",
       "formFactor": "Mini-Tower",
       "supportedFormFactorMotherboards": ["Micro-ATX"],
@@ -519,7 +519,7 @@
       "price": "1699 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/d1320c98f7d9387619ebfc9031f4413f/3e8b81eb2af86e8b14e4354f464efb01f508af9955bbbcae302fef2b61d091eb.jpg.webp",
       "model": "DEXP DC-302G",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": ["Micro-ATX", "Standard-ATX"],
@@ -531,7 +531,7 @@
       "price": "0 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/5402617cb9b8657d6ed1e80e53016ab7/39f282f5fd5cc9cdaeff29cd3559f554f64ef3bbf7094580b732e8f0130447d4.jpg.webp",
       "model": "Accord ACC-CT295RGB",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": ["Standard-ATX"],
@@ -543,7 +543,7 @@
       "price": "3499 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st1/fit/500/500/52baf6c6654b60ffa6de60d522b8afb7/62b914df3be9ded80f48963f5d5e51b6cfe820ceee7a971fb5fb9d5eb7933c45.jpg.webp",
       "model": "ExeGate EVO-7215-NPX500",
       "formFactor": "Mid-Tower",
       "supportedFormFactorMotherboards": [
@@ -559,7 +559,7 @@
       "price": "3499 рублей"
     },
     {
-      "productImageSrc" : "",
+      "productImageSrc" : "https://c.dns-shop.ru/thumb/st4/fit/500/500/047f48eb074859c0e2f34624570688ac/24e95d7e694a4a9065e03df8745eeea57a5889c5e915a9c279326391bf6487c3.jpg.webp",
       "model": "AeroCool CS-101",
       "formFactor": "Slim",
       "supportedFormFactorMotherboards": ["Micro-ATX", "Mini-ITX"],

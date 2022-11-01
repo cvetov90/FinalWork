@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/">Главная</router-link> |
     <router-link to="/config">Конфигуратор ПК</router-link> |
+    <router-link to="/test">Тест</router-link> |
     <router-link to="/about">О разработчике</router-link>
   </nav>
   <router-view/>
