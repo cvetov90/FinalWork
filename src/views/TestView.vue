@@ -14,13 +14,11 @@
 
     <div class="col-3">
       <h3>Draggable 2</h3>
-      <div v-for="productType in Object.keys(data)" :key="productType">
       <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="log" itemKey="model">
         <template #item="{ element }">
-          <ProductCard v-if="element.model" :product-object="element" :product-type="productType"></ProductCard>
+          <ProductCard :product-object="element" :product-type="searchProductType(element)"></ProductCard>
         </template>
       </draggable>
-      </div>
     </div>
 
     <!-- <rawDisplayer class="col-3" :value="list1" title="List 1" /> -->
@@ -67,6 +65,12 @@ export default {
     },
     log: function (evt) {
       window.console.log(evt);
+    },
+    searchProductType: function(element) {
+      for(let key in this.data) {
+        if(this.data[key].includes(element) == true)
+        return key
+      }
     }
   }
 };
