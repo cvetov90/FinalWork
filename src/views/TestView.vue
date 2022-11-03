@@ -16,7 +16,7 @@
 
     <div class="col-3 configurator">
       <h3>Конфигуратор ПК</h3>
-      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="log"
+      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="checkComputerAssembly"
         itemKey="model">
         <template #item="{ element }">
           <ProductCard :product-object="element" :product-type="searchProductType(element)"></ProductCard>
@@ -77,6 +77,11 @@ export default {
           return key
       }
     },
+    checkComputerAssembly: function(evt) {
+      if(this.list2.includes(evt.added.element)){
+        alert("Компонент уже присутствует в сборке")
+      }
+    }
     // productTypeTranslate: function (productType) {
     //   switch (productType) {
     //     case "motherboard":
