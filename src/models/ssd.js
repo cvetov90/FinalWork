@@ -24,7 +24,7 @@ export const ssd = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -32,4 +32,8 @@ export const ssd = reactive({
     }
     return map;
   },
+
+  getShortDescription() {
+    return "SSD накопитель " + this.objectValues.model + " [" + this.objectValues.capacity + ", " + this.objectValues.formFactor + "\"" + ", чтение - " + this.objectValues.maxSpeedRead + ", запись - " + this.objectValues.maxSpeedWrite + "]"
+  }
 });

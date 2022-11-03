@@ -23,7 +23,7 @@ export const computerCase = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -31,4 +31,8 @@ export const computerCase = reactive({
     }
     return map;
   },
+
+  getShortDescription() {
+    return "Корпус " + this.objectValues.model + " [" + this.objectValues.formFactor + ", " + this.objectValues.supportedFormFactorMotherboards + "]"
+  }
 });

@@ -30,7 +30,7 @@ export const cpu = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -38,4 +38,8 @@ export const cpu = reactive({
     }
     return map;
   },
+
+  getShortDescription() {
+    return "Процессор " + this.objectValues.model + " [" + this.objectValues.socket + ", " + this.objectValues.numberCores + " x " + this.objectValues.baseFrequency + ", L2 - " + this.objectValues.l2CacheVolume + ", L3 - " + this.objectValues.l3CacheVolume + ", " + this.objectValues.numberMemoryChannels + " x " + this.objectValues.supportedTypeRAM + " - " + this.objectValues.maxFrequencyRAM + "]"
+  }
 });

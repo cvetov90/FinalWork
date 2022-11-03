@@ -21,7 +21,7 @@ export const hdd = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getgetFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -29,4 +29,8 @@ export const hdd = reactive({
     }
     return map;
   },
+
+  getShortDescription() {
+    return "Жёсткий диск " + this.objectValues.model + " [" + this.objectValues.capacity + ", " + this.objectValues.interface + ", " + this.objectValues.rotationSpeed + ", " + "кэш-память - " + this.objectValues.cacheMemory + "]"
+  }
 });

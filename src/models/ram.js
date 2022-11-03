@@ -21,7 +21,7 @@ export const ram = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -29,4 +29,8 @@ export const ram = reactive({
     }
     return map;
   },
+  
+  getShortDescription() {
+    return "Оперативная память " + this.objectValues.model + " [" + this.objectValues.formFactor + ", " + this.objectValues.capacity + ", " + this.objectValues.typeRAM + ", " + this.objectValues.frequency + "]"
+  }
 });

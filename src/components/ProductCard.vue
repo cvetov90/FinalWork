@@ -22,12 +22,13 @@
 <template>
     <div class="product-card">
         <div>
-            <img :src="productImageSrc">
+            <img :src="productObject.productImageSrc">
         </div>
         <div>
-            <h3>{{productTitle}}</h3>
+            <h3>{{productObject.model}}</h3>
         </div>
-        <div v-html="productFullDescription"></div>
+        <!-- <div v-html="productFullDescription"></div> -->
+        <div v-html="productShortDescription"></div>
     </div>
 </template>
 
@@ -39,9 +40,7 @@ export default {
     name: 'ProductCard',
     data() {
         return {
-            productImageSrc: this.productObject.productImageSrc,
-            productTitle: this.productObject.model,
-            productFullDescription: "",
+            // productFullDescription: "",
             productShortDescription: ""
         }
     },
@@ -57,10 +56,13 @@ export default {
         import(`@/models/${this.productType}`)
             .then(obj => {
                 obj[this.productType].set(this.productObject)
-                obj[this.productType].getMap().forEach((value, key) => {
-                           this.productFullDescription += `${key}: ${value} <br>`
-                       })
+                this.productShortDescription = obj[this.productType].getShortDescription()
+            //!!!!!!!!!!!!!!!!!!!!!!!!! Не удалять ! Функция будет использоваться на странице продукта!!!!!!!!!!!!!!!!!!!!
+            //     obj[this.productType].getMap().forEach((value, key) => {
+            //                this.productFullDescription += `${key}: ${value} <br>`
+            //            })
             })
+
             // .catch(err => alert(err))
         }
     },

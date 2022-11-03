@@ -2,9 +2,11 @@
   <div class="row">
 
     <div class="col-3">
-      <h3>Draggable 1</h3>
+      <h3>Каталог деталей</h3>
       <div v-for="productType in Object.keys(data)" :key="productType">
-        <draggable class="list-group container" :list="data[productType]" :group="{ name: 'people', pull: 'clone', put: false }" @change="log" itemKey="model">
+        <div>{{ productTypeList.translate(productType) }}</div>
+        <draggable class="list-group container" :list="data[productType]"
+          :group="{ name: 'people', pull: 'clone', put: false }" @change="log" itemKey="model">
           <template #item="{ element }">
             <ProductCard :product-object="element" :product-type="productType"></ProductCard>
           </template>
@@ -12,9 +14,10 @@
       </div>
     </div>
 
-    <div class="col-3">
-      <h3>Draggable 2</h3>
-      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="log" itemKey="model">
+    <div class="col-3 configurator">
+      <h3>Конфигуратор ПК</h3>
+      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="log"
+        itemKey="model">
         <template #item="{ element }">
           <ProductCard :product-object="element" :product-type="searchProductType(element)"></ProductCard>
         </template>
@@ -30,6 +33,7 @@
 import draggable from 'vuedraggable'
 import { DataStore } from '@/DataStore.js'
 import ProductCard from '@/components/ProductCard.vue'
+import {productTypeList} from '@/models/productTypeList'
 
 export default {
   name: "TestView",
@@ -48,7 +52,8 @@ export default {
         { name: "Gerard", id: 4 }
       ],
       list2: [],
-      data: DataStore
+      data: DataStore,
+      productTypeList: productTypeList
     };
   },
   methods: {
@@ -66,12 +71,30 @@ export default {
     log: function (evt) {
       window.console.log(evt);
     },
-    searchProductType: function(element) {
-      for(let key in this.data) {
-        if(this.data[key].includes(element) == true)
-        return key
+    searchProductType: function (element) {
+      for (let key in this.data) {
+        if (this.data[key].includes(element) == true)
+          return key
       }
-    }
+    },
+    // productTypeTranslate: function (productType) {
+    //   switch (productType) {
+    //     case "motherboard":
+    //       return "Материнские платы";
+    //     case "cpu":
+    //       return "Процессоры";
+    //     case "ram":
+    //       return "Оперативная память"
+    //     case "powerSupply":
+    //       return "Блоки питания"
+    //     case "hdd":
+    //       return "Жёсткие диски (hdd)"
+    //     case "ssd":
+    //       return "Твердотельные накопители (ssd)"
+    //     case "computerCase":
+    //       return "Корпуса"
+    //   }
+    // }
   }
 };
 </script>
@@ -82,7 +105,7 @@ export default {
 }
 
 .list-group-constructor {
-  min-height: 100vh;
+  min-height: 70vh;
 }
 
 .container,
@@ -93,6 +116,11 @@ export default {
 
 .col-3 {
   width: 50%;
+}
+
+.configurator {
+  position: fixed;
+  right: 0;
 }
 </style>
 

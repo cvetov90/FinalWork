@@ -39,7 +39,7 @@ export const motherboard = reactive({
     // console.log(this.objectValues)
   },
 
-  getMap() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
@@ -47,4 +47,8 @@ export const motherboard = reactive({
     }
     return map;
   },
+
+  getShortDescription() {
+    return "Материнская плата " + this.objectValues.model + " [" + this.objectValues.socket + ", " + this.objectValues.chipset + ", " + this.objectValues.numberRAMSlots + "x" + this.objectValues.supportedTypeRAM + ", " + this.objectValues["PCI-E_x16_number"] + "xPCI-Ex16, " + this.objectValues.formFactor + "]"
+  }
 });
