@@ -22,8 +22,11 @@ import {DataStore} from '@/DataStore.js'
                   for(let key in data) {
                     // console.log(data[key])
                     DataStore[key] = data[key]
+                    for(let productObject in DataStore[key]) {
+                      DataStore[key][productObject].productType = key
+                    }
                   }
-                  // console.log(DataStore.motherboard[3])
+                  console.log(DataStore)
                 })
                 .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
 
