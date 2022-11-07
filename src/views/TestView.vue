@@ -78,9 +78,19 @@ export default {
       }
     },
     checkComputerAssembly: function(evt) {
-      if(this.list2.includes(evt.added.element)){
-        alert("Компонент уже присутствует в сборке")
+      // Список проверок
+      // 1) Проверка на повторение для матплат, процессоров (если однопроцессорная плата), блоков питания, корпусов
+      // 2) Проверка на совместимость компонентов между собой + количество устройств на материнке, количество устройств на блоке питания)
+      // 3) Нужно значть тип каждого элемента для проведения проверок
+
+      // if(this.list2.includes(evt.added.element)){
+      //   console.log("Компонент уже присутствует в сборке")
+      // }
+      // console.log(this.list2.filter(item => item === evt.added.element).length)
+      if((this.list2.filter(item => item === evt.added.element).length) > 1){
+        console.log(`Компонент ${evt.added.element.model} уже присутствует в сборке`)
       }
+      // console.log(evt.added.element.getAttribute('producttype'))
     }
     // productTypeTranslate: function (productType) {
     //   switch (productType) {
