@@ -81,15 +81,53 @@ export default {
       // Список проверок
       // 1) Проверка на повторение для матплат, процессоров (если однопроцессорная плата), блоков питания, корпусов
       // 2) Проверка на совместимость компонентов между собой + количество устройств на материнке, количество устройств на блоке питания)
-      // 3) Нужно значть тип каждого элемента для проведения проверок
+      // + 3) Нужно значть тип каждого элемента для проведения проверок
 
       // if(this.list2.includes(evt.added.element)){
       //   console.log("Компонент уже присутствует в сборке")
       // }
       // console.log(this.list2.filter(item => item === evt.added.element).length)
-      if((this.list2.filter(item => item === evt.added.element).length) > 1){
-        console.log(`Компонент ${evt.added.element.model} уже присутствует в сборке`)
+      
+      // Рабочий вариант
+      // if((this.list2.filter(item => item === evt.added.element).length) > 1){
+      //   console.log(`Компонент ${evt.added.element.model} уже присутствует в сборке`)
+      // }
+
+
+      // !!!!!!!!!!!!!!!!!! Каждый раз должна выполняться проверка совместимости всех элементов сборки, а не только добавляемого
+      let productTypeAssemblyList =[]
+      this.list2.forEach(item => {
+        productTypeAssemblyList.push(item.productType)
+      })
+      console.log(evt.added.element)
+      console.log(productTypeAssemblyList)
+
+      // Проверки на повторение компонентов, которые должны быть в единичном экземпляре
+      if(evt.added.element.productType == 'motherboard' && productTypeAssemblyList.filter(item => item === 'motherboard').length > 1){
+        console.log("Сборка может содержать только одну материнскую плату. Выберите наиболее подходящую и удалите остальные")
+        // заменить на удаление конкретного элемента
+        this.list2.splice(this.list2.indexOf(evt.added.element),1)
       }
+      if(evt.added.element.productType == 'computerCase' && productTypeAssemblyList.filter(item => item === 'computerCase').length > 1){
+        console.log("Сборка может содержать только один корпус. Выберите наиболее подходящий и удалите остальные")
+        this.list2.splice(this.list2.indexOf(evt.added.element),1)
+      }
+      if(evt.added.element.productType == 'powerSupply' && productTypeAssemblyList.filter(item => item === 'powerSupply').length > 1){
+        console.log("Сборка может содержать только один блок питания. Выберите наиболее подходящий и удалите остальные")
+        this.list2.splice(this.list2.indexOf(evt.added.element),1)
+      }
+      //Проверка на количество процессоров
+      if(evt.added.element.productType == 'cpu' && productTypeAssemblyList.filter(item => item === 'cpu').length > 1) {
+        let component = this.list2.find(item => item.productType == 'motherboard') 
+        // console.log(component)
+        if(component.supportedNumberCPU == 1) {
+        console.log("Материнская плата поддерживает только 1 процессор")
+        this.list2.splice(this.list2.indexOf(evt.added.element),1)
+        }
+      }
+      // Проверки совместимости
+
+      
       // console.log(evt.added.element.getAttribute('producttype'))
     }
     // productTypeTranslate: function (productType) {

@@ -20,7 +20,7 @@
 // Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
 
 <template>
-    <div class="product-card" :productType="productType">
+    <div class="product-card" :productTyp="productType">
         <div>
             <img :src="productObject.productImageSrc">
         </div>

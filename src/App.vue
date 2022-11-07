@@ -26,7 +26,7 @@ import {DataStore} from '@/DataStore.js'
                       DataStore[key][productObject].productType = key
                     }
                   }
-                  console.log(DataStore)
+                  // console.log(DataStore)
                 })
                 .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
 

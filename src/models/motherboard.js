@@ -8,6 +8,7 @@ export const motherboard = reactive({
     socket: "Сокет",
     chipset: "Чипсет",
     supportedCPUCore: "Совместимые ядра процессоров",
+    supportedNumberCPU: "Поддерживаемое количество процессоров",
     numberRAMSlots: "Коилчество слотов памяти",
     supportedRAMFormFactor: "Форм-фактор поддурживаемой памяти",
     supportedTypeRAM: "Тип поддурживаемой памяти",
