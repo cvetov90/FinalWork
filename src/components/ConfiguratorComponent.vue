@@ -1,34 +1,15 @@
 <template>
-  <div class="row">
-
-    <div class="col-3">
-      <h3>Каталог деталей</h3>
-      <div v-for="productType in Object.keys(data)" :key="productType">
-        <div>{{ productTypeList.translate(productType) }}</div>
-        <draggable class="list-group container" :list="data[productType]"
-          :group="{ name: 'people', pull: 'clone', put: false }" @change="log" itemKey="model">
-          <template #item="{ element }">
-            <ProductCard :product-object="element" :product-type="productType"></ProductCard>
-          </template>
-        </draggable>
-      </div>
-    </div>
-
     <div class="col-3 configurator">
       <h3>Конфигуратор ПК</h3>
-      <draggable class="list-group list-group-constructor container" :list="list2" group="people" @change="checkComputerAssembly"
-        itemKey="model">
+      <draggable class="list-group list-group-constructor container" :list="list2" group="product" @change="checkComputerAssembly"
+        itemKey="id">
         <template #item="{ element }">
-          <ProductCard :product-object="element" :product-type="searchProductType(element)"></ProductCard>
+          <ProductCard :product-object="element"></ProductCard>
         </template>
       </draggable>
     </div>
-
-    <!-- <rawDisplayer class="col-3" :value="list1" title="List 1" /> -->
-
-    <!-- <rawDisplayer class="col-3" :value="list2" title="List 2" /> -->
-  </div>
 </template>
+
 <script>
 import draggable from 'vuedraggable'
 import { DataStore } from '@/DataStore.js'
@@ -36,7 +17,7 @@ import ProductCard from '@/components/ProductCard.vue'
 import {productTypeList} from '@/models/productTypeList'
 
 export default {
-  name: "TestView",
+  name: "СonfiguratorComponent",
   display: "clone",
   order: 2,
   components: {
@@ -45,12 +26,6 @@ export default {
   },
   data() {
     return {
-      list1: [
-        { name: "John", id: 1 },
-        { name: "Joao", id: 2 },
-        { name: "Jean", id: 3 },
-        { name: "Gerard", id: 4 }
-      ],
       list2: [],
       data: DataStore,
       productTypeList: productTypeList
@@ -71,30 +46,20 @@ export default {
     log: function (evt) {
       window.console.log(evt);
     },
-    searchProductType: function (element) {
-      for (let key in this.data) {
-        if (this.data[key].includes(element) == true)
-          return key
-      }
-    },
+    // searchProductType: function (element) {
+    //   for (let key in this.data) {
+    //     if (this.data[key].includes(element) == true)
+    //       return key
+    //   }
+    // },
     checkComputerAssembly: function(evt) {
       // Список проверок
       // 1) Проверка на повторение для матплат, процессоров (если однопроцессорная плата), блоков питания, корпусов
       // 2) Проверка на совместимость компонентов между собой + количество устройств на материнке, количество устройств на блоке питания)
       // + 3) Нужно значть тип каждого элемента для проведения проверок
 
-      // if(this.list2.includes(evt.added.element)){
-      //   console.log("Компонент уже присутствует в сборке")
-      // }
-      // console.log(this.list2.filter(item => item === evt.added.element).length)
-      
-      // Рабочий вариант
-      // if((this.list2.filter(item => item === evt.added.element).length) > 1){
-      //   console.log(`Компонент ${evt.added.element.model} уже присутствует в сборке`)
-      // }
-
-
       // !!!!!!!!!!!!!!!!!! Каждый раз должна выполняться проверка совместимости всех элементов сборки, а не только добавляемого
+      // Сделать функцию, вызывающую функции отдельных проверок
       let productTypeAssemblyList =[]
       this.list2.forEach(item => {
         productTypeAssemblyList.push(item.productType)
@@ -105,7 +70,6 @@ export default {
       // Проверки на повторение компонентов, которые должны быть в единичном экземпляре
       if(evt.added.element.productType == 'motherboard' && productTypeAssemblyList.filter(item => item === 'motherboard').length > 1){
         console.log("Сборка может содержать только одну материнскую плату. Выберите наиболее подходящую и удалите остальные")
-        // заменить на удаление конкретного элемента
         this.list2.splice(this.list2.indexOf(evt.added.element),1)
       }
       if(evt.added.element.productType == 'computerCase' && productTypeAssemblyList.filter(item => item === 'computerCase').length > 1){
@@ -119,7 +83,6 @@ export default {
       //Проверка на количество процессоров
       if(evt.added.element.productType == 'cpu' && productTypeAssemblyList.filter(item => item === 'cpu').length > 1) {
         let component = this.list2.find(item => item.productType == 'motherboard') 
-        // console.log(component)
         if(component.supportedNumberCPU == 1) {
         console.log("Материнская плата поддерживает только 1 процессор")
         this.list2.splice(this.list2.indexOf(evt.added.element),1)
@@ -127,27 +90,7 @@ export default {
       }
       // Проверки совместимости
 
-      
-      // console.log(evt.added.element.getAttribute('producttype'))
     }
-    // productTypeTranslate: function (productType) {
-    //   switch (productType) {
-    //     case "motherboard":
-    //       return "Материнские платы";
-    //     case "cpu":
-    //       return "Процессоры";
-    //     case "ram":
-    //       return "Оперативная память"
-    //     case "powerSupply":
-    //       return "Блоки питания"
-    //     case "hdd":
-    //       return "Жёсткие диски (hdd)"
-    //     case "ssd":
-    //       return "Твердотельные накопители (ssd)"
-    //     case "computerCase":
-    //       return "Корпуса"
-    //   }
-    // }
   }
 };
 </script>
@@ -176,45 +119,3 @@ export default {
   right: 0;
 }
 </style>
-
-<!-- <template>
-  <draggable v-model="myArray" group="people" @start="drag = true" @end="drag = false" item-key="id">
-    <template #item="{ element }">
-      <div>
-        {{ element.name }} - {{ element.testKey }}
-        <img :src="element.src">
-      </div>
-    </template>
-  </draggable>
-
-  <rawDisplayer :value="myArray" title="myArray" />
-
-  <rawDisplayer class="col-3" :value="list2" title="List 2" />
-</template>
-
-<script>
-import draggable from 'vuedraggable'
-
-export default {
-  name: 'TestView',
-  data() {
-    return {
-      drag: false,
-      myArray: [
-        { name: "Jon", id: 1, testKey: "Тестовой значение", src: "https://c.dns-shop.ru/thumb/st1/fit/500/500/2c248571878532213684f4121779be9e/6853d3037b362b91ef6084eb43da5ddfd6d0f9078b1510603b6db4170def796a.jpg.webp" },
-        { name: "Alice", id: 2, testKey: "Тестовой значение", src: "https://c.dns-shop.ru/thumb/st1/fit/500/500/58e5e7cf3810738ee7099c4856db0fc0/2ea6a987906a2592d71d836af5ccf90b1a3f09fa69db96e3b45a249e6d74bebe.jpg.webp" }
-      ]
-    }
-  },
-  components: {
-    draggable,
-  }
-}
-</script>
-
-<style>
-.container {
-  display: flex;
-  flex-direction: row;
-}
-</style> -->

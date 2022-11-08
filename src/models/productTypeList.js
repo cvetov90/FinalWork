@@ -1,4 +1,3 @@
-// import { map } from 'core-js/core/array'
 import { reactive } from "vue";
 
 export const productTypeList = reactive({
