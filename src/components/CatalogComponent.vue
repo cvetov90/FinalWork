@@ -3,11 +3,16 @@
         <h3>Каталог деталей</h3>
         <div v-for="productType in Object.keys(data)" :key="productType">
             <div>{{ productTypeList.translate(productType) }}</div>
-            <draggable class="list-group container" :list="data[productType]"
-                :group="{ name: 'product', pull: 'clone', put: false }" @change="log" itemKey="id">
-                <template #item="{ element }">
-                    <ProductCard :product-object="element"></ProductCard>
-                </template>
+            <draggable 
+                class="list-group container" 
+                :list="data[productType]"
+                :group="{ name: 'product', pull: 'clone', put: false }" 
+                @change="log" 
+                itemKey="id"
+                >
+                    <template #item="{ element }">
+                        <ProductCard :product-object="element"></ProductCard>
+                    </template>
             </draggable>
         </div>
     </div>
@@ -21,8 +26,8 @@ import { productTypeList } from '@/models/productTypeList'
 
 export default {
     name: "CatalogComponent",
-    display: "clone",
-    order: 2,
+    // display: "clone",
+    // order: 2,
     components: {
         draggable,
         ProductCard,
@@ -34,17 +39,17 @@ export default {
         };
     },
     methods: {
-        add: function () {
-            this.list.push({ name: "Juan" });
-        },
-        replace: function () {
-            this.list = [{ name: "Edgard" }];
-        },
-        clone: function (el) {
-            return {
-                name: el.name + " cloned"
-            };
-        },
+        // add: function () {
+        //     this.list.push({ name: "Juan" });
+        // },
+        // replace: function () {
+        //     this.list = [{ name: "Edgard" }];
+        // },
+        // clone: function (el) {
+        //     return {
+        //         name: el.name + " cloned"
+        //     };
+        // },
         log: function (evt) {
             window.console.log(evt);
         },
@@ -54,25 +59,25 @@ export default {
 
 <style>
 .list-group {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 .list-group-constructor {
-  min-height: 70vh;
+    min-height: 70vh;
 }
 
 .container,
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .col-3 {
-  width: 50%;
+    width: 50%;
 }
 
 .configurator {
-  position: fixed;
-  right: 0;
+    position: fixed;
+    right: 0;
 }
 </style>
