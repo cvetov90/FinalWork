@@ -183,7 +183,7 @@
       "numberMemoryChannels": 2,
       "supportECC": "нет",
       "integratedGraphicsCore": "нет",
-      "cpuCore": "Intel Coffee Lake R",
+      "cpuCore": "Coffee Lake",
       "price": "13499 рублей"
     },
     {
@@ -203,7 +203,7 @@
       "numberMemoryChannels": 2,
       "supportECC": "нет",
       "integratedGraphicsCore": "нет",
-      "cpuCore": "AMD Summit Ridge",
+      "cpuCore": "Summit Ridge",
       "price": "6499 рублей"
     },
     {
@@ -223,7 +223,7 @@
       "numberMemoryChannels": 2,
       "supportECC": "нет",
       "integratedGraphicsCore": "нет",
-      "cpuCore": " AMD Vishera",
+      "cpuCore": "Vishera",
       "price": "1799 рублей"
     },
     {
@@ -243,7 +243,7 @@
       "numberMemoryChannels": 2,
       "supportECC": "нет",
       "integratedGraphicsCore": "есть",
-      "cpuCore": " Intel Comet Lake-S",
+      "cpuCore": "Comet Lake-S",
       "price": "3499 рублей"
     },
     {
@@ -263,7 +263,7 @@
       "numberMemoryChannels": 2,
       "supportECC": "нет",
       "integratedGraphicsCore": "есть",
-      "cpuCore": " Intel Alder Lake-S",
+      "cpuCore": "Alder Lake-S",
       "price": "3499 рублей"
     }
   ],
