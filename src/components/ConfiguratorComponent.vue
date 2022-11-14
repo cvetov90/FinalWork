@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       list2: [],
+      assemblyCpuLast: {},
       errors: []
       // data: DataStore,
       // productTypeList: productTypeList
@@ -61,6 +62,10 @@ export default {
     //   }
     // },
     checkComputerAssembly: function (evt) {
+// !!! Проводить валидацию через фабричный метод.
+// !!! В ситуации, когда нежно выбрат какой компонент оставить в сборке, вывести модальное окно с запросом какой компонент оставить
+
+
       // !!!!!!!!!!!! Написать дерево условий
       // Object.keys(DataStore).forEach(Type => {
       //   `${Type}` = this.list2.filter(item => item.productType == `${Type}`)
@@ -73,24 +78,30 @@ export default {
       let assemblyRam = this.list2.filter(item => item.productType == 'ram')
       let assemblyHdd = this.list2.filter(item => item.productType == 'hdd')
       let assemblySsd = this.list2.filter(item => item.productType == 'ssd')
+      let setAssemblyCpuLast = () => {if(evt.added.element.productType == 'cpu') {return evt.added.element} else return this.assemblyCpuLast}
+      this.assemblyCpuLast = setAssemblyCpuLast()
+      // console.log(this.assemblyCpuLast)
       // + 1) Количество материнских плат в сборке не должно превышать 1. 
       //      Реакция: вывести ошибку и подсветить все маатеринские платы
       if (assemblyMotherboards.length > 1) {
         assemblyMotherboards.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(evt.added.element)
         console.log("Сборка может содержать только одну материнскую плату")
+        this.checkComputerAssembly(evt)
       }
 
       if (assemblyPowerSupply.length > 1) {
         assemblyPowerSupply.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(evt.added.element)
         console.log("Сборка может содержать только один блок питания")
+        this.checkComputerAssembly(evt)
       }
 
       if (assemblyComputerCases.length > 1) {
         assemblyComputerCases.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(evt.added.element)
         console.log("Сборка может содержить только один корпус")
+        this.checkComputerAssembly(evt)
       }
 
       if (assemblyMotherboards.length == 1) {
@@ -115,8 +126,19 @@ export default {
           if (assemblyMotherboards.filter(item => item.supportedNumberCPU > 1).length == 0) {
             // Пересмотреть ситуацию когда сначала добавлены 2 процессора, а потом мат плата. Нужно оставить именно последний добавленный
             // процессор, а не добавлять элемент, пришедший в событии
-            assemblyCpu.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-            this.list2.push(evt.added.element)
+            // let assemblyCpuLast = assemblyCpu[assemblyCpu.length - 1]
+            // console.log(assemblyCpuLast)
+            assemblyCpu.forEach(item => {
+              // console.log(assemblyCpuLast())
+              // if(item.id != this.assemblyCpuLast.id) {
+              this.list2.splice(this.list2.indexOf(item), 1)
+              // }
+            })
+            this.list2.push(this.assemblyCpuLast)
+            // if(assemblyCpu.length > 1) {
+            //   this.list2.splice(this.list2.indexOf(item), 1)
+            // }
+            // this.list2.push(evt.added.element)
             console.log('Материнская плата поддурживает только один процессор')
           }
         }
