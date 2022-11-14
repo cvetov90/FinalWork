@@ -8,7 +8,7 @@
                 :list="data[productType]"
                 :group="{ name: 'product', pull: 'clone', put: false }" 
                 @change="log" 
-                itemKey="element"
+                itemKey="id"
                 >
                     <template #item="{ element }">
                         <ProductCard :product-object="element"></ProductCard>
