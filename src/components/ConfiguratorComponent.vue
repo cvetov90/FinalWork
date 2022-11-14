@@ -99,7 +99,7 @@ export default {
         assemblyMotherboards.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(this.assemblyMotherboardLast)
         console.log("Сборка может содержать только одну материнскую плату")
-        // this.checkComputerAssembly(evt)
+        this.checkComputerAssembly(evt)
         // this.checkComputerAssembly(this.assemblyMotherboardLast)
       }
       else if (assemblyMotherboards.length == 1) {
@@ -138,7 +138,7 @@ export default {
             // }
             // this.list2.push(evt.added.element)
             console.log('Материнская плата поддурживает только один процессор')
-            // this.checkComputerAssembly(evt)
+            this.checkComputerAssembly(evt)
           }
         }
 
@@ -195,7 +195,7 @@ export default {
         assemblyPowerSupply.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(this.assemblyPowerSupplyLast)
         console.log("Сборка может содержать только один блок питания")
-        // this.checkComputerAssembly(evt)
+        this.checkComputerAssembly(evt)
       }
       else if(assemblyPowerSupply.length == 1) {
         if ((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyPowerSupply[0].connector_15_pin_sata) {
@@ -208,7 +208,7 @@ export default {
         console.log(this.assemblyComputerCaseLast)
         this.list2.push(this.assemblyComputerCaseLast)
         console.log("Сборка может содержить только один корпус")
-        // this.checkComputerAssembly(evt)
+        this.checkComputerAssembly(evt)
       }
 
 
