@@ -8,7 +8,7 @@
   <div class="col-3 configurator">
     <h3>Конфигуратор ПК</h3>
     <draggable class="list-group list-group-constructor container" :list="list2" group="product"
-      @change="checkComputerAssembly" itemKey="id">
+      @change="checkComputerAssembly" itemKey="element">
       <template #item="{ element }">
         <ProductCard :product-object="element"></ProductCard>
       </template>
@@ -35,6 +35,9 @@ export default {
     return {
       list2: [],
       assemblyCpuLast: {},
+      assemblyMotherboardLast: {},
+      assemblyPowerSupplyLast: {},
+      assemblyComputerCaseLast: {},
       errors: []
       // data: DataStore,
       // productTypeList: productTypeList
@@ -62,8 +65,8 @@ export default {
     //   }
     // },
     checkComputerAssembly: function (evt) {
-// !!! Проводить валидацию через фабричный метод.
-// !!! В ситуации, когда нежно выбрат какой компонент оставить в сборке, вывести модальное окно с запросом какой компонент оставить
+      // !!! Проводить валидацию через фабричный метод.
+      // !!! В ситуации, когда нежно выбрат какой компонент оставить в сборке, вывести модальное окно с запросом какой компонент оставить
 
 
       // !!!!!!!!!!!! Написать дерево условий
@@ -78,33 +81,28 @@ export default {
       let assemblyRam = this.list2.filter(item => item.productType == 'ram')
       let assemblyHdd = this.list2.filter(item => item.productType == 'hdd')
       let assemblySsd = this.list2.filter(item => item.productType == 'ssd')
-      let setAssemblyCpuLast = () => {if(evt.added.element.productType == 'cpu') {return evt.added.element} else return this.assemblyCpuLast}
+
+      let setAssemblyCpuLast = () => { if (evt.added.element.productType == 'cpu') { return evt.added.element } else return this.assemblyCpuLast }
       this.assemblyCpuLast = setAssemblyCpuLast()
+      let setAssemblyMotherboardLast = () => { if (evt.added.element.productType == 'motherboard') { return evt.added.element } else return this.assemblyMotherboardLast }
+      this.assemblyMotherboardLast = setAssemblyMotherboardLast()
+      let setAssemblyPowerSupplyLast = () => { if (evt.added.element.productType == 'powerSupply') { return evt.added.element } else return this.assemblyPowerSupplyLast }
+      this.assemblyPowerSupplyLast = setAssemblyPowerSupplyLast()
+      let setAssemblyComputerCaseLast = () => { if (evt.added.element.productType == 'computerCase') { return evt.added.element } else return this.assemblyComputerCaseLast }
+      this.assemblyComputerCaseLast = setAssemblyComputerCaseLast()
       // console.log(this.assemblyCpuLast)
       // + 1) Количество материнских плат в сборке не должно превышать 1. 
       //      Реакция: вывести ошибку и подсветить все маатеринские платы
+     
+     
       if (assemblyMotherboards.length > 1) {
         assemblyMotherboards.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-        this.list2.push(evt.added.element)
+        this.list2.push(this.assemblyMotherboardLast)
         console.log("Сборка может содержать только одну материнскую плату")
-        this.checkComputerAssembly(evt)
+        // this.checkComputerAssembly(evt)
+        // this.checkComputerAssembly(this.assemblyMotherboardLast)
       }
-
-      if (assemblyPowerSupply.length > 1) {
-        assemblyPowerSupply.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-        this.list2.push(evt.added.element)
-        console.log("Сборка может содержать только один блок питания")
-        this.checkComputerAssembly(evt)
-      }
-
-      if (assemblyComputerCases.length > 1) {
-        assemblyComputerCases.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-        this.list2.push(evt.added.element)
-        console.log("Сборка может содержить только один корпус")
-        this.checkComputerAssembly(evt)
-      }
-
-      if (assemblyMotherboards.length == 1) {
+      else if (assemblyMotherboards.length == 1) {
         if (assemblyCpu.length == 1) {
           if (assemblyMotherboards[0].socket != assemblyCpu[0].socket) {
             console.log("Сокет мат. платы и процессора должны совадать")
@@ -115,10 +113,10 @@ export default {
           if (assemblyCpu[0].numberMemoryChannels < assemblyMotherboards[0].numberMemoryChannels) {
             console.log("Количество каналов оперативной памяти, поддерживаемых процессором, меньше, чем количество каналов оперативной памяти на материнской плате")
           }
-          if(!(parseInt(assemblyCpu[0].maxCapacityRAM.match(/\d+/)) >= parseInt(assemblyMotherboards[0].maxCapacityRAM.match(/\d+/)))) {
+          if (!(parseInt(assemblyCpu[0].maxCapacityRAM.match(/\d+/)) >= parseInt(assemblyMotherboards[0].maxCapacityRAM.match(/\d+/)))) {
             console.log("Объем оперативной памяти, поддерживаемой процессором, меньше, чем поддурживаемый материнской платой")
           }
-          if(!(parseInt(assemblyCpu[0].maxFrequencyRAM.match(/\d+/)) >= parseInt(assemblyMotherboards[0].maxFrequencyRAM.match(/\d+/)))) {
+          if (!(parseInt(assemblyCpu[0].maxFrequencyRAM.match(/\d+/)) >= parseInt(assemblyMotherboards[0].maxFrequencyRAM.match(/\d+/)))) {
             console.log("Максимальная частота оператиыной памяти, поддерживаемая процессором, меньше чем поддерживаемая материнской платой")
           }
         }
@@ -140,6 +138,7 @@ export default {
             // }
             // this.list2.push(evt.added.element)
             console.log('Материнская плата поддурживает только один процессор')
+            // this.checkComputerAssembly(evt)
           }
         }
 
@@ -154,10 +153,10 @@ export default {
             }
             ramCapasitySum += parseInt(item.capacity.match(/\d+/))
           })
-          if(ramCapasitySum > parseInt(assemblyMotherboards[0].maxCapacityRAM.match(/\d+/))) {
+          if (ramCapasitySum > parseInt(assemblyMotherboards[0].maxCapacityRAM.match(/\d+/))) {
             console.log("Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый материнской платой")
           }
-          if((assemblyCpu.length == 1) && (ramCapasitySum > parseInt(assemblyCpu[0].maxCapacityRAM.match(/\d+/)))) {
+          if ((assemblyCpu.length == 1) && (ramCapasitySum > parseInt(assemblyCpu[0].maxCapacityRAM.match(/\d+/)))) {
             console.log("Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый процессором")
           }
         }
@@ -185,15 +184,34 @@ export default {
               console.log(`Блок питаня ${assemblyPowerSupply[0].model} не имеет разъёма 8-pin для подключения питания процессора на материнской плате`)
             }
           }
-          if((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyPowerSupply[0].connector_15_pin_sata) {
-          console.log("Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания")
-        }
         }
 
-        if((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyMotherboards[0].connector_sata_number) {
+        if ((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyMotherboards[0].connector_sata_number) {
           console.log("Количество устройств с интерфейсом SATA в сборке больше, чем поддурживается материнской платой")
         }
       }
+
+      if (assemblyPowerSupply.length > 1) {
+        assemblyPowerSupply.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
+        this.list2.push(this.assemblyPowerSupplyLast)
+        console.log("Сборка может содержать только один блок питания")
+        // this.checkComputerAssembly(evt)
+      }
+      else if(assemblyPowerSupply.length == 1) {
+        if ((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyPowerSupply[0].connector_15_pin_sata) {
+            console.log("Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания")
+          }
+      }
+
+      if (assemblyComputerCases.length > 1) {
+        assemblyComputerCases.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
+        console.log(this.assemblyComputerCaseLast)
+        this.list2.push(this.assemblyComputerCaseLast)
+        console.log("Сборка может содержить только один корпус")
+        // this.checkComputerAssembly(evt)
+      }
+
+
 
       // + 3) Количество блоков питания в сборке не должно превышать 1.
       //      Реакция: вывести ошибку и подсветить все блоки питания в сборке
