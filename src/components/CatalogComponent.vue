@@ -7,6 +7,7 @@
                 class="list-group container" 
                 :list="data[productType]"
                 :group="{ name: 'product', pull: 'clone', put: false }" 
+                :clone="genAssemblyId"
                 @change="log" 
                 itemKey="id"
                 >
@@ -23,6 +24,7 @@ import draggable from 'vuedraggable'
 import { DataStore } from '@/DataStore.js'
 import ProductCard from '@/components/ProductCard.vue'
 import { productTypeList } from '@/models/productTypeList'
+let assemblyId = 1
 
 export default {
     name: "CatalogComponent",
@@ -53,6 +55,10 @@ export default {
         log: function (evt) {
             window.console.log(evt);
         },
+        genAssemblyId: function(evt) {
+            evt.assemblyId = assemblyId++
+            return Object.assign({}, evt)
+        }
     }
 }
 </script>

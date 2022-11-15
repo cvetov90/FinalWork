@@ -1,14 +1,14 @@
 <template>
   <div class="column">
-    <div>Ошибки</div>
+    <div>Ошибки и предупреждения</div>
     <div v-for="error in errors" :key="error">
-      {{ error }}
+      <div>{{ error.errorType }} : {{error.errorMessage}}</div>
     </div>
   </div>
   <div class="col-3 configurator">
     <h3>Конфигуратор ПК</h3>
     <draggable class="list-group list-group-constructor container" :list="list2" group="product"
-      @change="checkComputerAssembly" itemKey="id">
+      @change="checkComputerAssembly" itemKey="assemblyId">
       <template #item="{ element }">
         <ProductCard :product-object="element"></ProductCard>
       </template>
@@ -20,6 +20,7 @@
 import draggable from 'vuedraggable'
 // import { DataStore } from '@/DataStore.js'
 import ProductCard from '@/components/ProductCard.vue'
+import {assemblyErrors} from '@/models/assemblyErrors'
 // import { productTypeList } from '@/models/productTypeList'
 // import { productTypeList } from '@/models/productTypeList';
 
@@ -38,7 +39,7 @@ export default {
       assemblyMotherboardLast: {},
       assemblyPowerSupplyLast: {},
       assemblyComputerCaseLast: {},
-      errors: []
+      errors: assemblyErrors.get()
       // data: DataStore,
       // productTypeList: productTypeList
     };
@@ -115,6 +116,15 @@ export default {
       //   `${Type}` = this.list2.filter(item => item.productType == `${Type}`)
       //   console.log(Type)
       // })
+      if (evt.moved) {
+        this.log(evt)
+        return false
+      }
+
+      if(this.list2.length == 0) {
+        assemblyErrors.clear()
+      }
+
       let assemblyMotherboards = this.list2.filter(item => item.productType == 'motherboard')
       let assemblyPowerSupply = this.list2.filter(item => item.productType == 'powerSupply')
       let assemblyComputerCases = this.list2.filter(item => item.productType == 'computerCase')
@@ -131,10 +141,11 @@ export default {
       this.assemblyPowerSupplyLast = setAssemblyPowerSupplyLast()
       let setAssemblyComputerCaseLast = () => { if (evt.added.element.productType == 'computerCase') { return evt.added.element } else return this.assemblyComputerCaseLast }
       this.assemblyComputerCaseLast = setAssemblyComputerCaseLast()
-  
+
       if (assemblyMotherboards.length > 1) {
         assemblyMotherboards.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
         this.list2.push(this.assemblyMotherboardLast)
+        assemblyErrors.add("error", "Сборка может содержать только одну материнскую плату")
         console.log("Сборка может содержать только одну материнскую плату")
         this.checkComputerAssembly(evt)
       }
@@ -158,7 +169,7 @@ export default {
         }
         else if (assemblyCpu.length > 1) {
           if (assemblyMotherboards.filter(item => item.supportedNumberCPU > 1).length == 0) {
-            assemblyCpu.forEach(item => {this.list2.splice(this.list2.indexOf(item), 1)})
+            assemblyCpu.forEach(item => { this.list2.splice(this.list2.indexOf(item), 1) })
             this.list2.push(this.assemblyCpuLast)
             console.log('Материнская плата поддурживает только один процессор')
             this.checkComputerAssembly(evt)
@@ -216,10 +227,10 @@ export default {
         console.log("Сборка может содержать только один блок питания")
         this.checkComputerAssembly(evt)
       }
-      else if(assemblyPowerSupply.length == 1) {
+      else if (assemblyPowerSupply.length == 1) {
         if ((assemblyHdd.filter(item => item.interface == "SATA III").length + assemblySsd.filter(item => item.interface == "SATA III").length) > assemblyPowerSupply[0].connector_15_pin_sata) {
-            console.log("Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания")
-          }
+          console.log("Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания")
+        }
       }
 
       if (assemblyComputerCases.length > 1) {
@@ -232,10 +243,11 @@ export default {
 
 
       // Неправильно выбирается модель данных для опаисания
-      if((assemblyCpu.length > 0) && (assemblyRam.length > 0)) {
+      if ((assemblyCpu.length > 0) && (assemblyRam.length > 0)) {
         assemblyCpu.forEach(cpu => {
           assemblyRam.forEach(ram => {
-            if(!(cpu.supportedTypeRAM.includes(ram.typeRAM))) {
+            if (!(cpu.supportedTypeRAM.includes(ram.typeRAM))) {
+              assemblyErrors.add("error", `Процессор ${cpu.model} не поддерживает тип ${ram.typeRAM} модуля оперативной памяти ${ram.model}`)
               console.log(`Процессор ${cpu.model} не поддерживает тип ${ram.typeRAM} модуля оперативной памяти ${ram.model}`)
             }
           })
