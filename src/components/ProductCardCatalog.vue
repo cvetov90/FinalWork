@@ -14,16 +14,22 @@
             <h3>{{productObject.model}}</h3>
         </div>
         <div v-html="productShortDescription"></div>
+        <ButtonAdd @click="addProduct(productObject)"></ButtonAdd>
     </div>
 </template>
 
 <script>
+import { assembly } from '@/models/assembly'
+import ButtonAdd from '@/components/ButtonAdd.vue'
 export default {
-    name: 'ProductCard',
+    name: 'ProductCardCatalog',
     data() {
         return {
             productShortDescription: ""
         }
+    },
+    components: {
+        ButtonAdd
     },
     props: {
         productObject: Object,
@@ -42,6 +48,9 @@ export default {
             })
 
             // .catch(err => alert(err))
+        },
+        addProduct: function(element) {
+            assembly.add(element)
         }
     },
     created() {

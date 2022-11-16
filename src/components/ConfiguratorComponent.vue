@@ -7,10 +7,10 @@
   </div>
   <div class="col-3 configurator">
     <h3>Конфигуратор ПК</h3>
-    <draggable class="list-group list-group-constructor container" :list="list2" group="product"
+    <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
       @change="checkComputerAssembly" itemKey="assemblyId">
       <template #item="{ element }">
-        <ProductCard :product-object="element"></ProductCard>
+        <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
       </template>
     </draggable>
   </div>
@@ -18,8 +18,9 @@
 
 <script>
 import draggable from 'vuedraggable'
+import {assembly} from '@/models/assembly'
 // import { DataStore } from '@/DataStore.js'
-import ProductCard from '@/components/ProductCard.vue'
+import ProductCardConfigurator from '@/components/ProductCardConfigurator.vue'
 import {assemblyErrors} from '@/models/assemblyErrors'
 // import { productTypeList } from '@/models/productTypeList'
 // import { productTypeList } from '@/models/productTypeList';
@@ -30,11 +31,12 @@ export default {
   order: 2,
   components: {
     draggable,
-    ProductCard,
+    ProductCardConfigurator,
   },
   data() {
     return {
-      list2: [],
+      // list2: [],
+      assembly: assembly.get(),
       assemblyCpuLast: {},
       assemblyMotherboardLast: {},
       assemblyPowerSupplyLast: {},
@@ -113,7 +115,7 @@ export default {
       // 0) Проверка совместимости cpu и ram
 
       // Object.keys(DataStore).forEach(Type => {
-      //   `${Type}` = this.list2.filter(item => item.productType == `${Type}`)
+      //   `${Type}` = this.assembly.filter(item => item.productType == `${Type}`)
       //   console.log(Type)
       // })
       if (evt.moved) {
@@ -121,17 +123,17 @@ export default {
         return false
       }
 
-      if(this.list2.length == 0) {
+      if(this.assembly.length == 0) {
         assemblyErrors.clear()
       }
 
-      let assemblyMotherboards = this.list2.filter(item => item.productType == 'motherboard')
-      let assemblyPowerSupply = this.list2.filter(item => item.productType == 'powerSupply')
-      let assemblyComputerCases = this.list2.filter(item => item.productType == 'computerCase')
-      let assemblyCpu = this.list2.filter(item => item.productType == 'cpu')
-      let assemblyRam = this.list2.filter(item => item.productType == 'ram')
-      let assemblyHdd = this.list2.filter(item => item.productType == 'hdd')
-      let assemblySsd = this.list2.filter(item => item.productType == 'ssd')
+      let assemblyMotherboards = this.assembly.filter(item => item.productType == 'motherboard')
+      let assemblyPowerSupply = this.assembly.filter(item => item.productType == 'powerSupply')
+      let assemblyComputerCases = this.assembly.filter(item => item.productType == 'computerCase')
+      let assemblyCpu = this.assembly.filter(item => item.productType == 'cpu')
+      let assemblyRam = this.assembly.filter(item => item.productType == 'ram')
+      let assemblyHdd = this.assembly.filter(item => item.productType == 'hdd')
+      let assemblySsd = this.assembly.filter(item => item.productType == 'ssd')
 
       let setAssemblyCpuLast = () => { if (evt.added.element.productType == 'cpu') { return evt.added.element } else return this.assemblyCpuLast }
       this.assemblyCpuLast = setAssemblyCpuLast()
@@ -143,8 +145,8 @@ export default {
       this.assemblyComputerCaseLast = setAssemblyComputerCaseLast()
 
       if (assemblyMotherboards.length > 1) {
-        assemblyMotherboards.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-        this.list2.push(this.assemblyMotherboardLast)
+        assemblyMotherboards.forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
+        this.assembly.push(this.assemblyMotherboardLast)
         assemblyErrors.add("error", "Сборка может содержать только одну материнскую плату")
         console.log("Сборка может содержать только одну материнскую плату")
         this.checkComputerAssembly(evt)
@@ -169,8 +171,8 @@ export default {
         }
         else if (assemblyCpu.length > 1) {
           if (assemblyMotherboards.filter(item => item.supportedNumberCPU > 1).length == 0) {
-            assemblyCpu.forEach(item => { this.list2.splice(this.list2.indexOf(item), 1) })
-            this.list2.push(this.assemblyCpuLast)
+            assemblyCpu.forEach(item => { this.assembly.splice(this.assembly.indexOf(item), 1) })
+            this.assembly.push(this.assemblyCpuLast)
             console.log('Материнская плата поддурживает только один процессор')
             this.checkComputerAssembly(evt)
           }
@@ -222,8 +224,8 @@ export default {
       }
 
       if (assemblyPowerSupply.length > 1) {
-        assemblyPowerSupply.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
-        this.list2.push(this.assemblyPowerSupplyLast)
+        assemblyPowerSupply.forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
+        this.assembly.push(this.assemblyPowerSupplyLast)
         console.log("Сборка может содержать только один блок питания")
         this.checkComputerAssembly(evt)
       }
@@ -234,9 +236,9 @@ export default {
       }
 
       if (assemblyComputerCases.length > 1) {
-        assemblyComputerCases.forEach(item => this.list2.splice(this.list2.indexOf(item), 1))
+        assemblyComputerCases.forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
         console.log(this.assemblyComputerCaseLast)
-        this.list2.push(this.assemblyComputerCaseLast)
+        this.assembly.push(this.assemblyComputerCaseLast)
         console.log("Сборка может содержить только один корпус")
         this.checkComputerAssembly(evt)
       }

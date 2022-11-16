@@ -12,7 +12,7 @@
                 itemKey="id"
                 >
                     <template #item="{ element }">
-                        <ProductCard :product-object="element"></ProductCard>
+                        <ProductCardCatalog :product-object="element"></ProductCardCatalog>
                     </template>
             </draggable>
         </div>
@@ -22,7 +22,7 @@
 <script>
 import draggable from 'vuedraggable'
 import { DataStore } from '@/DataStore.js'
-import ProductCard from '@/components/ProductCard.vue'
+import ProductCardCatalog from '@/components/ProductCardCatalog.vue'
 import { productTypeList } from '@/models/productTypeList'
 let assemblyId = 1
 
@@ -32,7 +32,7 @@ export default {
     // order: 2,
     components: {
         draggable,
-        ProductCard,
+        ProductCardCatalog,
     },
     data() {
         return {
