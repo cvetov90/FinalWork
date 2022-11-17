@@ -10,8 +10,9 @@ export const assembly = reactive({
   assemblyRam() {return this.assembly.filter(item => item.productType == 'ram')},
   assemblyHdd() {return this.assembly.filter(item => item.productType == 'hdd')},
   assemblySsd() {return this.assembly.filter(item => item.productType == 'ssd')},
-  manualSelectArray: [],
-  showSelectModal: false,
+  ModalManualSelectArray: [],
+  ModalManualSelectMessage: "",
+  ModalManualSelectShowFlag: false,
   // resultSelect: {},
 //   assemblyCpuLast: {},
 //   assemblyMotherboardLast: {},
@@ -97,10 +98,11 @@ export const assembly = reactive({
     //   this.assemblyComputerCaseLast = setAssemblyComputerCaseLast()
 
       if (this.assemblyMotherboards().length > 1) {
-        this.manualSelectArray = this.assemblyMotherboards()
-        this.showSelectModal = true
-        assemblyErrors.add("error", "Сборка может содержать только одну материнскую плату")
-        console.log("Сборка может содержать только одну материнскую плату")
+        this.ModalManualSelectArray = this.assemblyMotherboards()
+        this.ModalManualSelectMessage = "Сборка может содержать только одну материнскую плату"
+        this.ModalManualSelectShowFlag = true
+        // assemblyErrors.add("error", "Сборка может содержать только одну материнскую плату")
+        // console.log("Сборка может содержать только одну материнскую плату")
 
         // // this.assembly.push(this.assemblyMotherboardLast)
         // alert("Здесь должна быть модалка с выбором")
@@ -126,11 +128,14 @@ export const assembly = reactive({
         }
         else if (this.assemblyCpu().length > 1) {
           if (this.assemblyMotherboards().filter(item => item.supportedNumberCPU > 1).length == 0) {
-            this.assemblyCpu().forEach(item => { this.assembly.splice(this.assembly.indexOf(item), 1) })
-            // this.assembly.push(this.assemblyCpuLast)
-            alert("Здесь должна быть модалка с выбором")
-            console.log('Материнская плата поддурживает только один процессор')
-            this.checkAssembly()
+            this.ModalManualSelectArray = this.assemblyCpu()
+            this.ModalManualSelectMessage = "Материнская плата поддурживает только один процессор"
+            this.ModalManualSelectShowFlag = true
+            // this.assemblyCpu().forEach(item => { this.assembly.splice(this.assembly.indexOf(item), 1) })
+            // // this.assembly.push(this.assemblyCpuLast)
+            // alert("Здесь должна быть модалка с выбором")
+            // console.log('Материнская плата поддурживает только один процессор')
+            // this.checkAssembly()
           }
         }
 
@@ -180,11 +185,15 @@ export const assembly = reactive({
       }
 
       if (this.assemblyPowerSupply().length > 1) {
-        this.assemblyPowerSupply().forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
-        // this.assembly.push(this.assemblyPowerSupplyLast)
-        alert("Здесь должна быть модалка с выбором")
-        console.log("Сборка может содержать только один блок питания")
-        this.checkAssembly()
+        console.log(this.assemblyPowerSupply())
+        this.ModalManualSelectArray = this.assemblyPowerSupply()
+        this.ModalManualSelectMessage = "Сборка может содержать только один блок питания"
+        this.ModalManualSelectShowFlag = true
+        // this.assemblyPowerSupply().forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
+        // // this.assembly.push(this.assemblyPowerSupplyLast)
+        // alert("Здесь должна быть модалка с выбором")
+        // console.log("Сборка может содержать только один блок питания")
+        // this.checkAssembly()
       }
       else if (this.assemblyPowerSupply().length == 1) {
         if ((this.assemblyHdd().filter(item => item.interface == "SATA III").length + this.assemblySsd().filter(item => item.interface == "SATA III").length) > this.assemblyPowerSupply()[0].connector_15_pin_sata) {
@@ -193,12 +202,16 @@ export const assembly = reactive({
       }
 
       if (this.assemblyComputerCases().length > 1) {
-        this.assemblyComputerCases().forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
-        // console.log(this.assemblyComputerCaseLast)
-        // this.assembly.push(this.assemblyComputerCaseLast)
-        alert("Здесь должна быть модалка с выбором")
-        console.log("Сборка может содержить только один корпус")
-        this.checkAssembly()
+        console.log(this.assemblyComputerCases())
+        this.ModalManualSelectArray = this.assemblyComputerCases()
+        this.ModalManualSelectMessage = "Сборка может содержить только один корпус"
+        this.ModalManualSelectShowFlag = true
+        // this.assemblyComputerCases().forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
+        // // console.log(this.assemblyComputerCaseLast)
+        // // this.assembly.push(this.assemblyComputerCaseLast)
+        // alert("Здесь должна быть модалка с выбором")
+        // console.log("Сборка может содержить только один корпус")
+        // this.checkAssembly()
       }
 
 

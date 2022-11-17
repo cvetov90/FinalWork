@@ -23,7 +23,7 @@
 // import ButtonDelete from './ButtonDelete.vue'
 
 export default {
-    name: 'ProductCardModal',
+    name: 'ProductCardModalManualSelect',
     data() {
         return {
             productShortDescription: ""

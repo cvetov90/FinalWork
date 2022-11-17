@@ -1,7 +1,6 @@
 <template>
   <!-- <button @click="showModal = !showModal">showModal</button> -->
-  <ModalProductSelect v-show="assembly.showSelectModal" :productsForSelect="assembly.manualSelectArray"></ModalProductSelect>
-  {{assembly.resultSelect}}
+  <ModalManualSelect v-show="assembly.ModalManualSelectShowFlag" :ModalManualSelectArray="assembly.ModalManualSelectArray" :ModalManualSelectMessage="assembly.ModalManualSelectMessage"></ModalManualSelect>
 
   <div class="row">
     <CatalogComponent></CatalogComponent>
@@ -10,7 +9,7 @@
 </template>
 <script>
 import {assembly} from '@/models/assembly'
-import ModalProductSelect from '@/components/ModalProductSelect.vue'
+import ModalManualSelect from '@/components/ModalManualSelect.vue'
 import CatalogComponent from '@/components/CatalogComponent.vue'
 import ConfiguratorComponent from '@/components/ConfiguratorComponent.vue';
 
@@ -19,7 +18,7 @@ export default {
   components: {
     CatalogComponent,
     ConfiguratorComponent,
-    ModalProductSelect
+    ModalManualSelect
   },
   data() {
     return {
