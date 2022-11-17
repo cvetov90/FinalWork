@@ -32,12 +32,12 @@ export default {
   components: {
     draggable,
     ProductCardConfigurator,
-  },
+},
   data() {
     return {
       // list2: [],
       assembly: assembly.get(),
-      errors: assemblyErrors.get()
+      errors: assemblyErrors.get(),
       // data: DataStore,
       // productTypeList: productTypeList
     };
@@ -73,7 +73,7 @@ export default {
         assemblyErrors.clear()
       }
 
-      assembly.checkAssembly(evt)
+      assembly.checkAssembly()
     }
   }
 }

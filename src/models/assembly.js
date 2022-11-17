@@ -3,13 +3,16 @@ import { assemblyErrors } from "./assemblyErrors";
 
 export const assembly = reactive({
   assembly: [],
-  assemblyMotherboards: function() {return this.assembly.filter(item => item.productType == 'motherboard')},
-  assemblyPowerSupply: function() {return this.assembly.filter(item => item.productType == 'powerSupply')},
-  assemblyComputerCases: function() {return this.assembly.filter(item => item.productType == 'computerCase')},
-  assemblyCpu: function() {return this.assembly.filter(item => item.productType == 'cpu')},
-  assemblyRam: function() {return this.assembly.filter(item => item.productType == 'ram')},
-  assemblyHdd: function() {return this.assembly.filter(item => item.productType == 'hdd')},
-  assemblySsd: function() {return this.assembly.filter(item => item.productType == 'ssd')},
+  assemblyMotherboards() {return this.assembly.filter(item => item.productType == 'motherboard')},
+  assemblyPowerSupply() {return this.assembly.filter(item => item.productType == 'powerSupply')},
+  assemblyComputerCases() {return this.assembly.filter(item => item.productType == 'computerCase')},
+  assemblyCpu() {return this.assembly.filter(item => item.productType == 'cpu')},
+  assemblyRam() {return this.assembly.filter(item => item.productType == 'ram')},
+  assemblyHdd() {return this.assembly.filter(item => item.productType == 'hdd')},
+  assemblySsd() {return this.assembly.filter(item => item.productType == 'ssd')},
+  manualSelectArray: [],
+  showSelectModal: false,
+  // resultSelect: {},
 //   assemblyCpuLast: {},
 //   assemblyMotherboardLast: {},
 //   assemblyPowerSupplyLast: {},
@@ -94,12 +97,14 @@ export const assembly = reactive({
     //   this.assemblyComputerCaseLast = setAssemblyComputerCaseLast()
 
       if (this.assemblyMotherboards().length > 1) {
-        this.assemblyMotherboards().forEach(item => this.assembly.splice(this.assembly.indexOf(item), 1))
-        // this.assembly.push(this.assemblyMotherboardLast)
-        alert("Здесь должна быть модалка с выбором")
+        this.manualSelectArray = this.assemblyMotherboards()
+        this.showSelectModal = true
         assemblyErrors.add("error", "Сборка может содержать только одну материнскую плату")
         console.log("Сборка может содержать только одну материнскую плату")
-        this.checkAssembly()
+
+        // // this.assembly.push(this.assemblyMotherboardLast)
+        // alert("Здесь должна быть модалка с выбором")
+
       }
       else if (this.assemblyMotherboards().length == 1) {
         if (this.assemblyCpu().length == 1) {
