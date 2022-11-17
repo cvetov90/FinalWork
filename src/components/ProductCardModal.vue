@@ -14,13 +14,13 @@
             <h3>{{productObject.model}}</h3>
         </div>
         <div v-html="productShortDescription"></div>
-        <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete>
+        <!-- <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete> -->
     </div>
 </template>
 
 <script>
-import { assembly } from '@/models/assembly'
-import ButtonDelete from './ButtonDelete.vue'
+// import { assembly } from '@/models/assembly'
+// import ButtonDelete from './ButtonDelete.vue'
 
 export default {
     name: 'ProductCardModal',
@@ -30,7 +30,7 @@ export default {
         }
     },
     components: {
-        ButtonDelete
+        // ButtonDelete
     },
     props: {
         productObject: Object,
@@ -51,9 +51,9 @@ export default {
             // .catch(err => alert(err))
         },
 
-        deleteProduct: function(element) {
-            assembly.delete(element)
-        }
+        // deleteProduct: function(element) {
+        //     assembly.delete(element)
+        // }
     },
     created() {
         this.creaeteDescription()
