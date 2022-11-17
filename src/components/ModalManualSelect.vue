@@ -41,7 +41,7 @@ export default {
     },
     data() {
         return {
-            ModalManualSelectResult: {}
+            ModalManualSelectResult: this.ModalManualSelectArray[0]
         }
     },
     methods: {
@@ -53,8 +53,8 @@ export default {
             assembly.assembly.push(this.ModalManualSelectResult)
             assembly.ModalManualSelectShowFlag = false
             assembly.checkAssembly()
-        }
-    }
+        },
+    },
 }
 </script>
 

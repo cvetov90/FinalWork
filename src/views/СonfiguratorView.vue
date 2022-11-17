@@ -1,6 +1,6 @@
 <template>
   <!-- <button @click="showModal = !showModal">showModal</button> -->
-  <ModalManualSelect v-show="assembly.ModalManualSelectShowFlag" :ModalManualSelectArray="assembly.ModalManualSelectArray" :ModalManualSelectMessage="assembly.ModalManualSelectMessage"></ModalManualSelect>
+  <ModalManualSelect v-if="assembly.ModalManualSelectShowFlag" :ModalManualSelectArray="assembly.ModalManualSelectArray" :ModalManualSelectMessage="assembly.ModalManualSelectMessage"></ModalManualSelect>
 
   <div class="row">
     <CatalogComponent></CatalogComponent>
