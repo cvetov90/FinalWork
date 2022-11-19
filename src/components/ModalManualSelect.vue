@@ -1,23 +1,18 @@
 <template>
     <div class="background">
         <div class="select-area">
-            <!-- <div v-for="product in ModalManualSelectArray" :key="product.assemblyId">
-            <ProductCardModalManualSelect :productObject="product"></ProductCardModalManualSelect>
-        </div> -->
             <form>
-                <!-- <fieldset> -->
                     <div>{{ModalManualSelectMessage}}</div>
-                    <div v-for="product in ModalManualSelectArray" :key="product.assemblyId">
+                    <div class="select-row" v-for="product in ModalManualSelectArray" :key="product.assemblyId">
                         <input type="radio" :id="product.assemblyId" name="products-group" :value="product"
                             v-model="ModalManualSelectResult">
-                        <label :for="product.assemblyId">
+                        <label class="label-row" :for="product.assemblyId">
                             <ProductCardModalManualSelect :productObject="product"></ProductCardModalManualSelect>
                         </label>
                     </div>
                     <div>
                         <ButtonSelect @click="selectResultToAssembly"></ButtonSelect>
                     </div>
-                <!-- </fieldset> -->
             </form>
         </div>
     </div>
@@ -58,23 +53,37 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .background {
     z-index: 999;
-    position: absolute;
+    position: fixed;
+    overflow: auto;
     left: 0;
     top: 0;
     background: rgba(15, 13, 13, 0.4);
-    min-width: 100%;
-    min-height: 100vh;
-}
+    height: 100%;
+    width: 100%;
+    }
 
 .select-area {
+    position: absolute;
+    overflow: auto;
+    top: 10%;
+    left: 20%;
     background: rgba(255, 255, 255, 1);
-    width: 30%;
-    margin-left: 50%;
-    margin-right: 50%;
-    margin-top: 200px;
-    /* margin-bottom: 50%; */
+    height: 70%;
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-row {
+    display: flex;
+}
+
+.label-row {
+    width: 100%;
 }
 </style>

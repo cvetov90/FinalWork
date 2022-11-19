@@ -1,12 +1,12 @@
 <template>
-  <h1 class="top">Шапка</h1>
+  <div class="top">Шапка</div>
   <nav>
     <router-link to="/">Главная</router-link> |
     <router-link to="/configurator">Конфигуратор ПК</router-link> |
     <router-link to="/about">О разработчике</router-link>
   </nav>
   <router-view/>
-  <h1 class="bottom">Подвал</h1>
+  <div class="bottom">Подвал</div>
 </template>
 <script>
 import {DataStore} from '@/DataStore.js'
@@ -36,6 +36,7 @@ import {DataStore} from '@/DataStore.js'
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  /* font-size: 24px; */
 }
 
 nav {

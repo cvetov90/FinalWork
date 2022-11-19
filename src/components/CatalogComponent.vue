@@ -8,7 +8,6 @@
                 :list="data[productType]"
                 :group="{ name: 'product', pull: 'clone', put: false }" 
                 :clone="genAssemblyId"
-                @change="log" 
                 itemKey="id"
                 >
                     <template #item="{ element }">
@@ -28,8 +27,6 @@ let assemblyId = 1
 
 export default {
     name: "CatalogComponent",
-    // display: "clone",
-    // order: 2,
     components: {
         draggable,
         ProductCardCatalog,
@@ -41,20 +38,6 @@ export default {
         };
     },
     methods: {
-        // add: function () {
-        //     this.list.push({ name: "Juan" });
-        // },
-        // replace: function () {
-        //     this.list = [{ name: "Edgard" }];
-        // },
-        // clone: function (el) {
-        //     return {
-        //         name: el.name + " cloned"
-        //     };
-        // },
-        log: function (evt) {
-            window.console.log(evt);
-        },
         genAssemblyId: function(evt) {
             evt.assemblyId = assemblyId++
             return Object.assign({}, evt)

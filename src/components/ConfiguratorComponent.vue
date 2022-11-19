@@ -1,11 +1,6 @@
 <template>
-  <div class="column">
-    <div>Ошибки и предупреждения</div>
-    <div v-for="error in errors" :key="error">
-      <div>{{ error.errorType }} : {{error.errorMessage}}</div>
-    </div>
-  </div>
   <div class="col-3 configurator">
+    <ErrorsComponent></ErrorsComponent>
     <h3>Конфигуратор ПК</h3>
     <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
       @change="checkComputerAssembly" itemKey="assemblyId">
@@ -19,62 +14,33 @@
 <script>
 import draggable from 'vuedraggable'
 import {assembly} from '@/models/assembly'
-// import { DataStore } from '@/DataStore.js'
 import ProductCardConfigurator from '@/components/ProductCardConfigurator.vue'
 import {assemblyErrors} from '@/models/assemblyErrors'
-// import { productTypeList } from '@/models/productTypeList'
-// import { productTypeList } from '@/models/productTypeList';
+import ErrorsComponent from '@/components/ErrorsComponent.vue'
 
 export default {
   name: "СonfiguratorComponent",
-  display: "clone",
-  order: 2,
   components: {
     draggable,
     ProductCardConfigurator,
+    ErrorsComponent
 },
   data() {
     return {
-      // list2: [],
       assembly: assembly.get(),
-      errors: assemblyErrors.get(),
-      // data: DataStore,
-      // productTypeList: productTypeList
     };
   },
   methods: {
-    // add: function () {
-    //   this.list.push({ name: "Juan" });
-    // },
-    // replace: function () {
-    //   this.list = [{ name: "Edgard" }];
-    // },
-    // clone: function (el) {
-    //   return {
-    //     name: el.name + " cloned"
-    //   };
-    // },
-    log: function (evt) {
-      window.console.log(evt);
-    },
-    // searchProductType: function (element) {
-    //   for (let key in this.data) {
-    //     if (this.data[key].includes(element) == true)
-    //       return key
-    //   }
-    // },
     checkComputerAssembly: function (evt) {
       if (evt.moved) {
-        this.log(evt)
+        // this.log(evt)
         return false
       }
-
       if(this.assembly.length == 0) {
         assemblyErrors.clear()
       }
-
       assembly.checkAssembly()
-    }
+    },
   }
 }
 </script>

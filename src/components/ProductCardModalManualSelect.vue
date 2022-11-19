@@ -1,27 +1,18 @@
-
-// 1) Переработать названия переменных и функций, дать понятные названия по фактическому назначению
-// 8) В корневом компоненте App разработать структуру для вывода компонентов на страницу (блоки один над другим с возможностью сворачивания/разворачивания
-нужных/ненужных). Добваить немного стилей и область для сборки. Добавить вывод информации о детали в карточке в таблицу.
-// 9) Добавить ссылки на картинки в json. Добавить вывод картинок.
-// Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
-
 <template>
     <div class="product-card">
-        <div>
+        <div class="product-image">
             <img :src="productObject.productImageSrc">
         </div>
-        <div>
-            <h3>{{productObject.model}}</h3>
+        <div class="product-description">
+            <div>
+                <h3>{{ productObject.model }}</h3>
+            </div>
+            <div v-html="productShortDescription"></div>
         </div>
-        <div v-html="productShortDescription"></div>
-        <!-- <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete> -->
     </div>
 </template>
 
 <script>
-// import { assembly } from '@/models/assembly'
-// import ButtonDelete from './ButtonDelete.vue'
-
 export default {
     name: 'ProductCardModalManualSelect',
     data() {
@@ -29,31 +20,17 @@ export default {
             productShortDescription: ""
         }
     },
-    components: {
-        // ButtonDelete
-    },
     props: {
         productObject: Object,
-        // productType: String
     },
     methods: {
         creaeteDescription: function () {
-        import(`@/models/${this.productObject.productType}`)
-            .then(obj => {
-                obj[this.productObject.productType].set(this.productObject)
-                this.productShortDescription = obj[this.productObject.productType].getShortDescription()
-            //!!!!!!!!!!!!!!!!!!!!!!!!! Не удалять ! Функция будет использоваться на странице продукта!!!!!!!!!!!!!!!!!!!!
-            //     obj[this.productType].getMap().forEach((value, key) => {
-            //                this.productFullDescription += `${key}: ${value} <br>`
-            //            })
-            })
-
-            // .catch(err => alert(err))
+            import(`@/models/${this.productObject.productType}`)
+                .then(obj => {
+                    obj[this.productObject.productType].set(this.productObject)
+                    this.productShortDescription = obj[this.productObject.productType].getShortDescription()
+                })
         },
-
-        // deleteProduct: function(element) {
-        //     assembly.delete(element)
-        // }
     },
     created() {
         this.creaeteDescription()
@@ -61,22 +38,51 @@ export default {
 }
 </script>
 
-<style>
-div {
-    /* border: 1px solid black; */
+<style scoped>
+/* div {
+    border: 1px solid black;
     overflow: scroll;
-}
+} */
 
 img {
-    width: 200px;
+    width: 60%;
+    padding: 10px;
 }
 
 .product-card {
-    width: 30%;
-    height: 400px;
+    overflow: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: grid;
+    grid-template-areas:
+        "a b"
+        "a c";
+    grid-gap: 10px;
+    grid-template-columns: 30% / 70%;
+    align-items: center; */
+    width: 90%;
+    height: 230px;
     border: 1px solid black;
     margin: 15px;
     /* border-radius: 30px; */
     /* box-shadow: 5px 5px 5px gray; */
+}
+
+.product-image {
+    /* width: 30%%; */
+/* align-self: center; */
+/* justify-self: center; */
+    /* grid-area: a; */
+}
+
+.product-description {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;;
+    align-items: center;
+    justify-content: flex-start;
+    /* grid-area: b; */
 }
 </style>

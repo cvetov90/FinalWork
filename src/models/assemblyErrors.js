@@ -6,24 +6,22 @@ export const assemblyErrors = reactive({
     errorMessage: ""
   },
 
-  errors: new Set(),
+  errorsSet: new Set(),
+
+  errorsArray: [],
 
   add(errorType, errorMessage) {
-    if(errorType == "error") {
-    this.error.errorType = "Ошибка"
-    }
-    else if(errorType == "warning") {
-      this.error.errorType = "Предупреждение"
-    }
+    this.error.errorType = errorType
     this.error.errorMessage = errorMessage
-    this.errors.add(Object.assign({}, this.error))
+    this.errorsSet.add(JSON.stringify(this.error))
   },
 
-  get() {
-    return this.errors
+  setToArray() {
+    this.errorsArray = []
+    this.errorsSet.forEach(item => this.errorsArray.push(JSON.parse(item)))
   },
   
   clear() {
-    this.errors.clear()
+    this.errorsSet.clear()
   }
 });
