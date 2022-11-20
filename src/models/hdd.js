@@ -18,7 +18,7 @@ export const hdd = reactive({
     }
   },
 
-  getgetFullDescription() {
+  getFullDescription() {
     let map = new Map();
     for(let key in this.labels) {
       map.set(this.labels[key], this.objectValues[key])
