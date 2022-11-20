@@ -1,6 +1,8 @@
+// import { productCard } from '@/models/productCard'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import СonfiguratorView from '../views/СonfiguratorView.vue'
+import productCardFullView from '../views/ProductCardFullView.vue'
 
 const routes = [
   {
@@ -12,6 +14,11 @@ const routes = [
     path: '/configurator',
     name: 'configurator',
     component: СonfiguratorView
+  },
+  {
+    path: '/catalog/:id',
+    name: 'CatalogProductCard',
+    component: productCardFullView
   },
   {
     path: '/about',

@@ -1,4 +1,8 @@
 
+// 1) Переработать названия переменных и функций, дать понятные названия по фактическому назначению
+// 8) В корневом компоненте App разработать структуру для вывода компонентов на страницу (блоки один над другим с возможностью сворачивания/разворачивания
+нужных/ненужных). Добваить немного стилей и область для сборки. Добавить вывод информации о детали в карточке в таблицу.
+// 9) Добавить ссылки на картинки в json. Добавить вывод картинок.
 // Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
 
 <template>
@@ -9,27 +13,27 @@
         <div>
             <h3>{{productObject.model}}</h3>
         </div>
-        <div v-html="productShortDescription"></div>
-        <ButtonAdd @click="addProduct(productObject)"></ButtonAdd>
-        <RouterLink @click="productCard.productCard = productObject" :to="{name: 'CatalogProductCard', params: {id: productObject.id}}">Подробнее</RouterLink>
+        <div v-html="productCard.productCardFullDescription"></div>
+        <!-- <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete> -->
     </div>
 </template>
 
 <script>
 import { productCard } from '@/models/productCard'
-import { assembly } from '@/models/assembly'
-import ButtonAdd from '@/components/ButtonAdd.vue'
+// import { assembly } from '@/models/assembly'
+// import ButtonDelete from './ButtonDelete.vue'
+
 export default {
-    name: 'ProductCardCatalog',
+    name: 'ProductCardFullDescription',
     data() {
         return {
-            productShortDescription: "",
-            productCard: productCard
+            productCard: productCard,
+            // productShortDescription: ""
         }
     },
-    components: {
-        ButtonAdd
-    },
+    // components: {
+    //     ButtonDelete
+    // },
     props: {
         productObject: Object,
         // productType: String
@@ -38,6 +42,8 @@ export default {
         creaeteDescription: function () {
         import(`@/models/${this.productObject.productType}`)
             .then(obj => {
+                console.log(obj)
+                console.log(obj[this.productObject.productType])
                 obj[this.productObject.productType].set(this.productObject)
                 this.productShortDescription = obj[this.productObject.productType].getShortDescription()
             //!!!!!!!!!!!!!!!!!!!!!!!!! Не удалять ! Функция будет использоваться на странице продукта!!!!!!!!!!!!!!!!!!!!
@@ -48,12 +54,15 @@ export default {
 
             // .catch(err => alert(err))
         },
-        addProduct: function(element) {
-            assembly.add(element)
-        }
+
+    //     deleteProduct: function(element) {
+    //         assembly.delete(element)
+    //     }
     },
     created() {
-        this.creaeteDescription()
+        // this.creaeteDescription()
+        // productCard.getShortDescription()
+        productCard.getFullDescription()
     }
 }
 </script>
