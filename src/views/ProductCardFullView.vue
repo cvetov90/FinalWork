@@ -2,6 +2,7 @@
 <div>    {{                     $route.params.id                     }} </div>
     <div>{{                     $route.params                     }}</div>
     <div>{{productCard.productCard}}</div>
+    <button @click="goBack">Назад</button>
     <ProductCardFullDescription :productObject="productCard.productCard"></ProductCardFullDescription>
 
 </template>
@@ -19,6 +20,11 @@ export default {
             productCard: productCard
         }
     },
+    methods: {
+        goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    }
+    }
 };
 </script>
   

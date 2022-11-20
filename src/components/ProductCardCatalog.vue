@@ -7,11 +7,12 @@
             <img :src="productObject.productImageSrc">
         </div>
         <div>
-            <h3>{{productObject.model}}</h3>
+            <h3>{{ productObject.model }}</h3>
         </div>
         <div v-html="productShortDescription"></div>
         <ButtonAdd @click="addProduct(productObject)"></ButtonAdd>
-        <RouterLink @click="productCard.productCard = productObject" :to="{name: 'CatalogProductCard', params: {id: productObject.id}}">Подробнее</RouterLink>
+        <RouterLink @click="productCard.productCard = productObject"
+            :to="{ name: 'CatalogProductCard', params: { id: productObject.id } }">Подробнее</RouterLink>
     </div>
 </template>
 
@@ -32,28 +33,15 @@ export default {
     },
     props: {
         productObject: Object,
-        // productType: String
     },
     methods: {
-        creaeteDescription: function () {
-        import(`@/models/${this.productObject.productType}`)
-            .then(obj => {
-                obj[this.productObject.productType].set(this.productObject)
-                this.productShortDescription = obj[this.productObject.productType].getShortDescription()
-            //!!!!!!!!!!!!!!!!!!!!!!!!! Не удалять ! Функция будет использоваться на странице продукта!!!!!!!!!!!!!!!!!!!!
-            //     obj[this.productType].getMap().forEach((value, key) => {
-            //                this.productFullDescription += `${key}: ${value} <br>`
-            //            })
-            })
-
-            // .catch(err => alert(err))
-        },
-        addProduct: function(element) {
+        addProduct: function (element) {
             assembly.add(element)
         }
     },
     created() {
-        this.creaeteDescription()
+        productCard.getShortDescription(this.productObject)
+            .then(item => { this.productShortDescription = item })
     }
 }
 </script>

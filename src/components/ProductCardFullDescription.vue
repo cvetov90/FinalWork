@@ -1,8 +1,3 @@
-
-// 1) Переработать названия переменных и функций, дать понятные названия по фактическому назначению
-// 8) В корневом компоненте App разработать структуру для вывода компонентов на страницу (блоки один над другим с возможностью сворачивания/разворачивания
-нужных/ненужных). Добваить немного стилей и область для сборки. Добавить вывод информации о детали в карточке в таблицу.
-// 9) Добавить ссылки на картинки в json. Добавить вывод картинок.
 // Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
 
 <template>
@@ -13,7 +8,7 @@
         <div>
             <h3>{{productObject.model}}</h3>
         </div>
-        <div v-html="productCard.productCardFullDescription"></div>
+        <div v-html="productFullDescription"></div>
         <!-- <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete> -->
     </div>
 </template>
@@ -28,7 +23,7 @@ export default {
     data() {
         return {
             productCard: productCard,
-            // productShortDescription: ""
+            productFullDescription: ""
         }
     },
     // components: {
@@ -55,6 +50,8 @@ export default {
             // .catch(err => alert(err))
         },
 
+
+
     //     deleteProduct: function(element) {
     //         assembly.delete(element)
     //     }
@@ -62,8 +59,9 @@ export default {
     created() {
         // this.creaeteDescription()
         // productCard.getShortDescription()
-        productCard.getFullDescription()
-    }
+        productCard.getFullDescription(this.productObject)
+        .then(item => {this.productFullDescription = item})
+    },
 }
 </script>
 
