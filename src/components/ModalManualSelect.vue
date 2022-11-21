@@ -45,9 +45,9 @@ export default {
             event.preventDefault()
             // assembly.resultSelect = this.ModalManualSelectResult
             this.ModalManualSelectArray.forEach(item => assembly.assembly.splice(assembly.assembly.indexOf(item), 1))
-            assembly.assembly.push(this.ModalManualSelectResult)
+            assembly.add(this.ModalManualSelectResult)
             assembly.ModalManualSelectShowFlag = false
-            assembly.checkAssembly()
+            // assembly.checkAssembly()
         },
     },
 }

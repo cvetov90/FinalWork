@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { productCard } from '@/models/productCard'
+
 export default {
     name: 'ProductCardModalManualSelect',
     data() {
@@ -33,7 +35,9 @@ export default {
         },
     },
     created() {
-        this.creaeteDescription()
+        // this.creaeteDescription()
+        productCard.getShortDescription(this.productObject)
+            .then(item => { this.productShortDescription = item })
     }
 }
 </script>

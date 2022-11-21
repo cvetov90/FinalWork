@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { productCard } from '@/models/productCard'
 import { assembly } from '@/models/assembly'
 import ButtonDelete from './ButtonDelete.vue'
 
@@ -56,7 +57,9 @@ export default {
         }
     },
     created() {
-        this.creaeteDescription()
+        // this.creaeteDescription()
+        productCard.getShortDescription(this.productObject)
+            .then(item => { this.productShortDescription = item })
     }
 }
 </script>
