@@ -1,6 +1,6 @@
 <template>
   <header-component></header-component>
-  <router-view />
+  <router-view class="router-view"/>
   <footer-component></footer-component>
 </template>
 <script>
@@ -52,5 +52,16 @@ a:hover,
 a:focus,
 a:active {
   color: #fe7200;
+}
+
+.router-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 100%; */
+  /* height: 50vh; */
+  padding: 30px 0;
+  width: 100%;
 }
 </style>

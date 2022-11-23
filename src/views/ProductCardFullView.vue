@@ -1,10 +1,12 @@
 <template>
-<div>    {{                     $route.params.id                     }} </div>
-    <div>{{                     $route.params                     }}</div>
-    <div>{{productCard.productCard}}</div>
-    <button @click="goBack">Назад</button>
-    <ProductCardFullDescription :productObject="productCard.productCard"></ProductCardFullDescription>
-
+    <div>
+        <div class="content">
+            <div class="button-back"><a href="#" @click="goBack">Назад</a></div>
+            <div>
+                <ProductCardFullDescription :productObject="productCard.productCard"></ProductCardFullDescription>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 import { productCard } from '@/models/productCard';
@@ -22,12 +24,21 @@ export default {
     },
     methods: {
         goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
+            window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+        }
     }
 };
 </script>
   
-<style>
+<style scoped>
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
 
+.button-back {
+    align-self: flex-end;
+    padding: 0 25px;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="top">
+    <div class="header">
         <div class="wrapper">
-            <div class="top-logo"><a href="http://localhost:8080"><img src="@/assets/top-logo.png" alt="top-logo"></a></div>
-            <nav class="menu-top">
+            <div><router-link to="/"><img class="header-logo" src="@/assets/top-logo.png" alt="top-logo"></router-link></div>
+            <nav class="header-menu">
                 <MenuComponent></MenuComponent>
             </nav>
         </div>
@@ -20,8 +20,8 @@ export default {
 }
 </script>
 
-<style>
-.top {
+<style> 
+.header {
     display: flex;
     width: 100%;
     align-items: center;
@@ -36,15 +36,15 @@ export default {
     justify-content: space-between;
 }
 
-.top-logo {
-
+.header-logo {
+    height: 100px;
 }
 
-.menu-top {
+.header-menu {
     padding: 30px 0;
 }
 
-.menu-top>a {
+.header-menu>a {
     padding: 0 25px;
 }
 </style>

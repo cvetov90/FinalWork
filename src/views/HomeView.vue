@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- <ProductCard></ProductCard> -->
     <h1>Итоговая работа</h1>
     <table class="info">
       <tr>
@@ -31,25 +30,28 @@
 </template>
 
 <script>
-// @ is an alias to /src
 
 export default {
   name: 'HomeView',
-  // components: {
-  //   ProductCard
-  // }
 }
 </script>
 
-<style>
-  .info {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-  }
+<style scoped>
+.home {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
 
-  td {
-    font-size: 20px;
-    padding: 10px;
-  }
+.info {
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  text-align: left;
+}
+
+td {
+  font-size: 20px;
+  padding: 10px;
+}
 </style>
