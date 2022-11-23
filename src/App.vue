@@ -1,33 +1,34 @@
 <template>
-  <div class="top">Шапка</div>
-  <nav>
-    <router-link to="/">Главная</router-link> |
-    <router-link to="/configurator">Конфигуратор ПК</router-link> |
-    <router-link to="/about">О разработчике</router-link>
-  </nav>
-  <router-view/>
-  <div class="bottom">Подвал</div>
+  <header-component></header-component>
+  <router-view />
+  <footer-component></footer-component>
 </template>
 <script>
-import {DataStore} from '@/DataStore.js'
+import FooterComponent from './components/FooterComponent.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
+import { DataStore } from '@/DataStore.js'
 
-  export default {
-    name: "App",
-    setup() {
-      fetch('http://localhost:8080/pc_details.json')
-                .then(response => response.json())
-                .then(data => {
-                  for(let key in data) {
-                    DataStore[key] = data[key]
-                    for(let productObject in DataStore[key]) {
-                      DataStore[key][productObject].productType = key
-                    }
-                  }
-                })
-                .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
+export default {
+  name: "App",
+  components: {
+    FooterComponent,
+    HeaderComponent
+  },
+  setup() {
+    fetch('http://localhost:8080/pc_details.json')
+      .then(response => response.json())
+      .then(data => {
+        for (let key in data) {
+          DataStore[key] = data[key]
+          for (let productObject in DataStore[key]) {
+            DataStore[key][productObject].productType = key
+          }
+        }
+      })
+      .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
 
-    }
   }
+}
 </script>
 <style>
 #app {
@@ -37,25 +38,19 @@ import {DataStore} from '@/DataStore.js'
   text-align: center;
   color: #2c3e50;
   /* font-size: 24px; */
+  position: relative;
+  min-height: 100vh;
 }
 
-nav {
-  padding: 30px;
+a {
+  text-decoration: none;
+  color: #151528;
+  ;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-.top {
-  background: gray;
-}
-.bottom {
-  background: lightgreen;
+a:hover,
+a:focus,
+a:active {
+  color: #fe7200;
 }
 </style>

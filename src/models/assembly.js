@@ -79,31 +79,44 @@ export const assembly = reactive({
 
       if (this.assemblyMotherboards().length > 1) {
         this.ModalManualSelectArray = this.assemblyMotherboards()
-        this.ModalManualSelectMessage = "Сборка может содержать только одну материнскую плату"
+        this.ModalManualSelectMessage = "В компьютере может быть установлена только одна материнская плата. Выберите наиболее подходящую плату из саиска:"
         this.ModalManualSelectShowFlag = true
       }
       else if (this.assemblyMotherboards().length == 1) {
         if (this.assemblyCpu().length == 1) {
           if (this.assemblyMotherboards()[0].socket != this.assemblyCpu()[0].socket) {
-            assemblyErrors.add("Ошибка","Сокет мат. платы и процессора должны совадать")
+            assemblyErrors.add("Ошибка",`Сокет материнской платы и процессора должны совпадать. Сокет материнской платы ${this.assemblyMotherboards()[0].model}: 
+            ${this.assemblyMotherboards()[0].socket}. Сокет процессора ${this.assemblyCpu()[0].model}: ${this.assemblyCpu()[0].socket}. Выберите материнскую
+            плату и процессор с одинаковым сокетом.`)
           }
           if (!(this.assemblyMotherboards()[0].supportedCPUCore.includes(this.assemblyCpu()[0].cpuCore))) {
-            assemblyErrors.add("Ошибка", "Материнская плата не поддерживает ядро процессора")
+            assemblyErrors.add("Ошибка", `Материнская плата не поддерживает ядро процессора. Ядра, поддерживаемые материнской платой ${this.assemblyMotherboards()[0].model}: 
+            ${this.assemblyMotherboards()[0].supportedCPUCore}. Ядро процессора ${this.assemblyCpu()[0].model}: ${this.assemblyCpu()[0].cpuCore}. Выберите процессор с ядром, 
+            поддерживаемым материнской платой, или замените материнскую плату на плату, поддерживающую ядро процессора ${this.assemblyCpu()[0].cpuCore}`)
           }
           if (this.assemblyCpu()[0].numberMemoryChannels < this.assemblyMotherboards()[0].numberMemoryChannels) {
-            assemblyErrors.add("Предупреждение", "Количество каналов оперативной памяти, поддерживаемых процессором, меньше, чем количество каналов оперативной памяти на материнской плате")
+            assemblyErrors.add("Предупреждение", `Количество каналов оперативной памяти, поддерживаемых процессором, меньше, чем количество каналов оперативной памяти на материнской плате. 
+            Процессор ${this.assemblyCpu()[0].model} поддерживает ${this.assemblyCpu()[0].numberMemoryChannels} канала памяти. На материнской плате ${this.assemblyMotherboards()[0].model} 
+            реализовано ${this.assemblyMotherboards()[0].numberMemoryChannels} каналов памяти. Рекаомендуется установить процессор с поддержкой не менее ${this.assemblyMotherboards()[0].numberMemoryChannels} 
+            каналов памяти`)
           }
           if (!(parseInt(this.assemblyCpu()[0].maxCapacityRAM.match(/\d+/)) >= parseInt(this.assemblyMotherboards()[0].maxCapacityRAM.match(/\d+/)))) {
-            assemblyErrors.add("Предупреждение", "Объем оперативной памяти, поддерживаемой процессором, меньше, чем поддурживаемый материнской платой")
+            assemblyErrors.add("Предупреждение", `Объем оперативной памяти, поддерживаемой процессором, меньше, чем поддурживаемый материнской платой. Процессор ${this.assemblyCpu()[0].model} 
+            поддерживает ${parseInt(this.assemblyCpu()[0].maxCapacityRAM.match(/\d+/))} ГБ. Материнская плата ${this.assemblyMotherboards()[0].model} поддерживает 
+            ${parseInt(this.assemblyMotherboards()[0].maxCapacityRAM.match(/\d+/))} ГБ. Рекомендуется установить процессор с поддержкой не менее ${parseInt(this.assemblyMotherboards()[0].maxCapacityRAM.match(/\d+/))}
+             ГБ оперативной памяти.`)
           }
           if (!(parseInt(this.assemblyCpu()[0].maxFrequencyRAM.match(/\d+/)) >= parseInt(this.assemblyMotherboards()[0].maxFrequencyRAM.match(/\d+/)))) {
-            assemblyErrors.add("Предупреждение", "Максимальная частота оператиыной памяти, поддерживаемая процессором, меньше чем поддерживаемая материнской платой")
+            assemblyErrors.add("Предупреждение", `Максимальная частота оператиыной памяти, поддерживаемая процессором, меньше чем поддерживаемая материнской платой. Процессо ${this.assemblyCpu()[0].model} 
+            поддерживает память с частотой до ${parseInt(this.assemblyCpu()[0].maxFrequencyRAM.match(/\d+/))} МГц. Материнская плата ${this.assemblyMotherboards()[0].model} 
+            поддерживает память с частотой до ${parseInt(this.assemblyMotherboards()[0].maxFrequencyRAM.match(/\d+/))} МГц. Рекомендуется установить процессор, поддерживающий 
+            оперативную память с частотой до ${parseInt(this.assemblyMotherboards()[0].maxFrequencyRAM.match(/\d+/))} МГц`)
           }
         }
         else if (this.assemblyCpu().length > 1) {
           if (this.assemblyMotherboards().filter(item => item.supportedNumberCPU > 1).length == 0) {
             this.ModalManualSelectArray = this.assemblyCpu()
-            this.ModalManualSelectMessage = "Материнская плата поддурживает только один процессор"
+            this.ModalManualSelectMessage = `Материнская плата ${this.assemblyMotherboards()[0].model} поддурживает только один процессор. Выберите процессор из списка:`
             this.ModalManualSelectShowFlag = true
           }
         }
@@ -112,22 +125,31 @@ export const assembly = reactive({
           let ramCapasitySum = 0
           this.assemblyRam().forEach(item => {
             if (!(this.assemblyMotherboards()[0].supportedTypeRAM.includes(item.typeRAM))) {
-              assemblyErrors.add("Ошибка", `Тип оперативной памяти (${item.typeRAM}) модуля памяти ${item.model} не поддерживается материнской платой`)
+              assemblyErrors.add("Ошибка", `Тип оперативной памяти не поддерживается материнской платой. Материнская плата ${this.assemblyMotherboards()[0].model} 
+              поддерживает оперативную память ${this.assemblyMotherboards()[0].supportedTypeRAM}. Тип оперативной памяти модуля памяти ${item.model}:  ${item.typeRAM}.
+              Замените указаный модуль оперативной памяти.`)
             }
             if (this.assemblyMotherboards()[0].supportedRAMFormFactor != item.formFactor) {
-              assemblyErrors.add("Ошибка", `Форм-фактор (${item.formFactor}) модуля оперативной памяти ${item.model} не поддерживается материнской платой`)
+              assemblyErrors.add("Ошибка", `Форм-фактор оперативной памяти не поддерживается материнской платой. Материнская плата ${this.assemblyMotherboards()[0].model} 
+              поддерживает оперативную память с форм-фактором ${this.assemblyMotherboards()[0].supportedRAMFormFactor}. Форм-фактор модуля оперативной памяти ${item.model}: ${item.formFactor}
+              Замените указаный модуль оперативной памяти.`)
             }
             ramCapasitySum += parseInt(item.capacity.match(/\d+/))
           })
           if (ramCapasitySum > parseInt(this.assemblyMotherboards()[0].maxCapacityRAM.match(/\d+/))) {
-            assemblyErrors.add("Ошибка", "Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый материнской платой")
+            assemblyErrors.add("Ошибка", `Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый материнской платой. Установлено ${ramCapasitySum} ГБ оперативной памяти.
+            Материнская плата ${this.assemblyMotherboards()[0].model} поддерживает ${parseInt(this.assemblyMotherboards()[0].maxCapacityRAM.match(/\d+/))} ГБ оперативной памяти.
+            Уменьшите количество модулей оперативной памяти в сборке.`)
           }
           if ((this.assemblyCpu().length == 1) && (ramCapasitySum > parseInt(this.assemblyCpu()[0].maxCapacityRAM.match(/\d+/)))) {
-            assemblyErrors.add("Ошибка", "Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый процессором")
+            assemblyErrors.add("Ошибка", `Суммарный объем оперативной памяти в сборке больше, чем поддерживаемый процессором. Установлено ${ramCapasitySum} ГБ оперативной памяти.
+            Процессор ${this.assemblyCpu()[0].model} поддерживает ${parseInt(this.assemblyCpu()[0].maxCapacityRAM.match(/\d+/))} ГБ оперативной памяти. Уменьшите количество модулей оперативной памяти в сборке.`)
           }
         }
         if (this.assemblyRam().length > this.assemblyMotherboards()[0].numberRAMSlots) {
-          assemblyErrors.add("Ошибка", "В сборке больше модулей оперативной памяти, чем слотов на материнской плате. Удалите чать модулей памяти")
+          assemblyErrors.add("Ошибка", `В сборке больше модулей оперативной памяти, чем слотов на материнской плате. Установлено ${this.assemblyRam().length} модулей
+          оперативной памяти. На материнской плате ${this.assemblyMotherboards()[0].model} имеется ${this.assemblyMotherboards()[0].numberRAMSlots} слотов для установки
+          оперативной памяти. Уменьшите количество модулей оперативной памяти в сборке.`)
         }
 
         if (this.assemblyPowerSupply().length == 1) {
@@ -149,26 +171,30 @@ export const assembly = reactive({
         }
 
         if ((this.assemblyHdd().filter(item => item.interface == "SATA III").length + this.assemblySsd().filter(item => item.interface == "SATA III").length) > this.assemblyMotherboards()[0].connector_sata_number) {
-          assemblyErrors.add("Ошибка", "Количество устройств с интерфейсом SATA в сборке больше, чем поддурживается материнской платой")
+          assemblyErrors.add("Ошибка", `Количество устройств с интерфейсом SATA в сборке больше, чем поддерживается материнской платой. Установлено ${(this.assemblyHdd().filter(item => item.interface == "SATA III").length + this.assemblySsd().filter(item => item.interface == "SATA III").length)}
+          устройств с интерфейсом SATA. Материнская плата ${this.assemblyMotherboards()[0].model} поддерживает подключение до ${this.assemblyMotherboards()[0].connector_sata_number} устройств с интерфейсом SATA.
+          Удалите часть устройств с интерфейсом SATA из сборки.`)
         }
       }
 
       if (this.assemblyPowerSupply().length > 1) {
         console.log(this.assemblyPowerSupply())
         this.ModalManualSelectArray = this.assemblyPowerSupply()
-        this.ModalManualSelectMessage = "Сборка может содержать только один блок питания"
+        this.ModalManualSelectMessage = "В компьютере может быть установлен только одна блок питания. Выберите наиболее подходящий блок питания из списка:"
         this.ModalManualSelectShowFlag = true
       }
       else if (this.assemblyPowerSupply().length == 1) {
         if ((this.assemblyHdd().filter(item => item.interface == "SATA III").length + this.assemblySsd().filter(item => item.interface == "SATA III").length) > this.assemblyPowerSupply()[0].connector_15_pin_sata) {
-          assemblyErrors.add("Ошибка", "Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания")
+          assemblyErrors.add("Ошибка", `Количество устройств с интерфейсом SATA в сборке больше, чем можно подключить к блоку питания. Установлено ${(this.assemblyHdd().filter(item => item.interface == "SATA III").length + this.assemblySsd().filter(item => item.interface == "SATA III").length)}
+          устройств с интерфейсом SATA. Блок питания ${this.assemblyPowerSupply()[0].model} поддерживает подключение до ${this.assemblyPowerSupply()[0].connector_15_pin_sata} устройств с интерфейсом SATA.
+          Удалите часть устройств с интерфейсом SATA из сборки.`)
         }
       }
 
       if (this.assemblyComputerCases().length > 1) {
         console.log(this.assemblyComputerCases())
         this.ModalManualSelectArray = this.assemblyComputerCases()
-        this.ModalManualSelectMessage = "Сборка может содержить только один корпус"
+        this.ModalManualSelectMessage = "Сборка может содержать только один корпус. Выберите наиболее подходящий корпус из саиска:"
         this.ModalManualSelectShowFlag = true
       }
 
@@ -176,7 +202,8 @@ export const assembly = reactive({
         this.assemblyCpu().forEach(cpu => {
           this.assemblyRam().forEach(ram => {
             if (!(cpu.supportedTypeRAM.includes(ram.typeRAM))) {
-              assemblyErrors.add("Ошибка", `Процессор ${cpu.model} не поддерживает тип ${ram.typeRAM} модуля оперативной памяти ${ram.model}`)
+              assemblyErrors.add("Ошибка", `Процессор не поддерживает тип оперативной памяти. Процессор ${cpu.model} поддерживает оперативную память 
+              ${cpu.supportedTypeRAM}. Тип модуля оперативной памяти ${ram.model}: ${ram.typeRAM}. Замените указаный модуль памяти.`)
             }
           })
         })
