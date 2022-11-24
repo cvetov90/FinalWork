@@ -37,9 +37,9 @@ export default {
 
 <style>
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    /* position: relative; */
+    /* left: 0; */
+    /* bottom: 0; */
     width: 100%;
     text-align: left;
     background: #f5f5f6;
@@ -47,6 +47,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* margin-bottom: -280px; */
 }
 
 .footer-block-position {

@@ -39,8 +39,14 @@ export default {
   color: #2c3e50;
   font-size: 16px;
   position: relative;
+  /* left: 0; */
+  /* top: 0; */
   min-height: 100vh;
+  width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 a {

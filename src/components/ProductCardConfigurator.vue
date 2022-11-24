@@ -7,9 +7,11 @@
 
 <template>
     <div class="product-card">
-        <!-- <div class="product-card-image">
-            <img :src="productObject.productImageSrc">
-        </div> -->
+        <div class="procuct-card-wrapper">
+            <div class="product-card-image">
+                <img :src="productObject.productImageSrc">
+            </div>
+        </div>
         <div class="product-card-info">
             <div class="product-card-info-title">
                 <h3>{{ productObject.model }}</h3>

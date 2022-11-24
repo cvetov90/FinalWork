@@ -2,9 +2,7 @@
     <div>
         <div class="content">
             <div class="button-back"><a href="#" @click="goBack">Назад</a></div>
-            <div>
                 <ProductCardFullDescription :productObject="productCard.productCard"></ProductCardFullDescription>
-            </div>
         </div>
     </div>
 </template>
@@ -34,7 +32,8 @@ export default {
 .content {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
+    overflow-y: scroll;
 }
 
 .button-back {

@@ -1,20 +1,22 @@
 <template>
-  <div class="col-3">
-    <div>
-      <h3>Конфигуратор ПК</h3>
-    </div>
-    <div class="summary">Сумаарная информация</div>
-    <div class="errors">
-      <ErrorsComponent></ErrorsComponent>
-    </div>
-    <div v-if="!assembly.length">Добавьте компоненты в сборку</div>
-    <div class="configurator">
-      <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
-        @change="checkComputerAssembly" itemKey="assemblyId">
-        <template #item="{ element }">
-          <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
-        </template>
-      </draggable>
+  <div class="configurator-wrapper">
+    <div class="col-3">
+      <div class="configurator-title">
+        <h3>Конфигуратор ПК</h3>
+      </div>
+      <div class="summary">Сумаарная информация</div>
+      <div class="errors">
+        <ErrorsComponent></ErrorsComponent>
+      </div>
+      <div class="assembly-prompt" v-if="!assembly.length">Добавьте компоненты в сборку</div>
+      <div class="configurator">
+        <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
+          @change="checkComputerAssembly" itemKey="assemblyId">
+          <template #item="{ element }">
+            <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
+          </template>
+        </draggable>
+      </div>
     </div>
   </div>
 </template>
@@ -55,11 +57,11 @@ export default {
 
 <style scoped>
 .list-group {
-  border: 1px solid black;
+  border: 1px solid #dfdfe1;
 }
 
 .list-group-constructor {
-  min-height: 90%;
+  min-height: 100%;
 }
 
 .container,
@@ -68,20 +70,36 @@ export default {
   flex-direction: column;
 }
 
-.col-3 {
+.configurator-wrapper{
   height: 80%;
   width: 40%;
-  border: 1px solid black;
+  background: rgb(248, 237, 232);
+  display: flex;
+  position: fixed;
+  right: 5%;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+
+}
+.col-3 {
+  height: 100%;
+  width: 90%;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 5%  ;
-  background: rgb(248, 237, 232);
+  /* padding: 20px; */
+  /* position: fixed; */
+  /* right: 5%; */
+  /* background: rgb(248, 237, 232); */
   overflow-y: auto;
 }
 
 .configurator {
-  min-height: 90%;
+  min-height: 65%;
+  border-bottom: 1px solid #dfdfe1;
+  /* margin-bottom: 20px; */
+  /* padding-bottom: 20px; */
   /* overflow-y: scroll; */
   /* position: fixed; */
   /* right: 0; */
@@ -101,5 +119,14 @@ export default {
   flex-direction: column;
   font-weight: bold;
   color: red;
+}
+
+.configurator-title,
+.summary,
+/* .list-group, */
+/* .configurator */
+.assembly-prompt {
+  padding: 20px;
+  border-bottom: 1px solid #dfdfe1;
 }
 </style>
