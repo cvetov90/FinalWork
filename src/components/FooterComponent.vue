@@ -50,7 +50,7 @@ export default {
 }
 
 .footer-block-position {
-    width: 80%;
+    width: 90%;
     padding: 20px 0;
 }
 

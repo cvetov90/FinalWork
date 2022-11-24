@@ -1,29 +1,44 @@
 <template>
-  <div class="column">
+  <div v-show="errors.showFlag" class="column">
     <div>Ошибки и предупреждения</div>
+    <!-- <div><button @click="changeShowFlag">Показать</button></div> -->
     <div v-for="error in errors.errorsArray" :key="error">
       <div>{{ error.errorType }} : {{error.errorMessage}}</div>
+      <br>
     </div>
   </div>
 </template>
 
 <script>
-import {assemblyErrors} from '@/models/assemblyErrors'
+import { assemblyErrors } from '@/models/assemblyErrors'
 export default {
   name: "ErrorsComponent",
   data() {
     return {
       errors: assemblyErrors,
+      // showFlag: false
     };
-  }
-  }
+  },
+  // methods: {
+  //   checkErrors() {
+  //     if (assemblyErrors.errorsArray.length) {
+  //       this.showFlag = !this.showFlag
+  //     }
+  //   }
+  // },
+  // updated() {
+  //   this.checkErrors
+  // }
+}
 </script>
 
-<style>
+<style scoped>
 .column {
   display: flex;
   flex-direction: column;
   font-weight: bold;
   color: red;
+  /* min-height: 10%; */
+  /* overflow-y: scroll; */
 }
 </style>

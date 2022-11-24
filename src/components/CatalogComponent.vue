@@ -1,19 +1,18 @@
 <template>
     <div class="col-3">
-        <h3>Каталог деталей</h3>
+        <div>
+            <h3>Каталог деталей</h3>
+        </div>
         <div v-for="productType in Object.keys(data)" :key="productType">
-            <div>{{ productTypeList.translate(productType) }}</div>
-            <draggable 
-                class="list-group container" 
-                :list="data[productType]"
-                :group="{ name: 'product', pull: 'clone', put: false }" 
-                :clone="genAssemblyId"
-                itemKey="id"
-                >
+            <div class="product-type-string">{{ productTypeList.translate(productType) }}</div>
+            <div>
+                <draggable class="list-group container" :list="data[productType]"
+                    :group="{ name: 'product', pull: 'clone', put: false }" :clone="genAssemblyId" itemKey="id">
                     <template #item="{ element }">
                         <ProductCardCatalog :product-object="element"></ProductCardCatalog>
                     </template>
-            </draggable>
+                </draggable>
+            </div>
         </div>
     </div>
 </template>
@@ -34,11 +33,12 @@ export default {
     data() {
         return {
             data: DataStore,
-            productTypeList: productTypeList
+            productTypeList: productTypeList,
+            show: false
         };
     },
     methods: {
-        genAssemblyId: function(evt) {
+        genAssemblyId: function (evt) {
             evt.assemblyId = assemblyId++
             return Object.assign({}, evt)
         }
@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
 .list-group {
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .list-group-constructor {
@@ -63,6 +63,12 @@ export default {
 
 .col-3 {
     width: 50%;
+    /* border: 1px solid black; */
+    /* position: relative; */
+}
+
+.product-type-string {
+    background: lightgray;
 }
 
 /* .configurator {

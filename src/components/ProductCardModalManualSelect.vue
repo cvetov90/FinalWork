@@ -1,13 +1,13 @@
 <template>
     <div class="product-card">
-        <div class="product-image">
+        <div class="product-card-image">
             <img :src="productObject.productImageSrc">
         </div>
-        <div class="product-description">
-            <div>
+        <div class="product-card-info">
+            <div class="product-card-info-title">
                 <h3>{{ productObject.model }}</h3>
             </div>
-            <div v-html="productShortDescription"></div>
+            <div class="product-card-info-description" v-html="productShortDescription"></div>
         </div>
     </div>
 </template>
@@ -48,45 +48,45 @@ export default {
     overflow: scroll;
 } */
 
-img {
+/* img {
     width: 60%;
     padding: 10px;
-}
+} */
 
-.product-card {
-    overflow: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* display: grid;
+/* .product-card { */
+/* overflow: unset; */
+/* display: flex; */
+/* align-items: center; */
+/* justify-content: center; */
+/* display: grid;
     grid-template-areas:
         "a b"
         "a c";
     grid-gap: 10px;
     grid-template-columns: 30% / 70%;
     align-items: center; */
-    width: 90%;
-    height: 230px;
-    border: 1px solid black;
-    margin: 15px;
-    /* border-radius: 30px; */
-    /* box-shadow: 5px 5px 5px gray; */
-}
+/* width: 90%; */
+/* height: 230px; */
+/* border: 1px solid black; */
+/* margin: 15px; */
+/* border-radius: 30px; */
+/* box-shadow: 5px 5px 5px gray; */
+/* } */
 
-.product-image {
-    /* width: 30%%; */
+/* .product-image { */
+/* width: 30%%; */
 /* align-self: center; */
 /* justify-self: center; */
-    /* grid-area: a; */
-}
+/* grid-area: a; */
+/* } */
 
-.product-description {
+/* .product-description {
     height: 90%;
     width: 90%;
     display: flex;
     flex-direction: column;;
     align-items: center;
     justify-content: flex-start;
-    /* grid-area: b; */
-}
+    grid-area: b;
+} */
 </style>

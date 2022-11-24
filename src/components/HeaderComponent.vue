@@ -29,7 +29,7 @@ export default {
 }
 
 .wrapper {
-    width: 80%;
+    width: 90%;
     border-bottom: 1px solid #dfdfe1;
     display: flex;
     align-items: center;

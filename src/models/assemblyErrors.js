@@ -9,11 +9,14 @@ export const assemblyErrors = reactive({
   errorsSet: new Set(),
 
   errorsArray: [],
+  
+  showFlag: false,
 
   add(errorType, errorMessage) {
     this.error.errorType = errorType
     this.error.errorMessage = errorMessage
     this.errorsSet.add(JSON.stringify(this.error))
+    this.showFlag = true
   },
 
   setToArray() {
@@ -23,5 +26,6 @@ export const assemblyErrors = reactive({
   
   clear() {
     this.errorsSet.clear()
+    this.showFlag = false
   }
 });
