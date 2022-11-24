@@ -1,12 +1,14 @@
 <template>
   <div>
-    <ModalManualSelect v-if="assembly.ModalManualSelectShowFlag"
-      :ModalManualSelectArray="assembly.ModalManualSelectArray"
-      :ModalManualSelectMessage="assembly.ModalManualSelectMessage"></ModalManualSelect>
+    <div class="content">
+      <ModalManualSelect v-if="assembly.ModalManualSelectShowFlag"
+        :ModalManualSelectArray="assembly.ModalManualSelectArray"
+        :ModalManualSelectMessage="assembly.ModalManualSelectMessage"></ModalManualSelect>
 
-    <div class="row">
-      <CatalogComponent></CatalogComponent>
-      <ConfiguratorComponent></ConfiguratorComponent>
+      <div class="row">
+        <CatalogComponent></CatalogComponent>
+        <ConfiguratorComponent></ConfiguratorComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +33,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
 .row {
   display: flex;
   flex-direction: row;

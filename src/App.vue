@@ -54,6 +54,10 @@ a:active {
   color: #fe7200;
 }
 
+nav a.router-link-exact-active {
+  color: #fe7200;
+}
+
 .router-view {
   display: flex;
   flex-direction: column;

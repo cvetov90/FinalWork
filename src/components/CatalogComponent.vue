@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .list-group {
     border: 1px solid black;
 }
@@ -58,15 +58,15 @@ export default {
 .container,
 .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .col-3 {
     width: 50%;
 }
 
-.configurator {
+/* .configurator {
     position: fixed;
     right: 0;
-}
+} */
 </style>

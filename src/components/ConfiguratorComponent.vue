@@ -1,6 +1,5 @@
 <template>
   <div class="col-3 configurator">
-    <ErrorsComponent></ErrorsComponent>
     <h3>Конфигуратор ПК</h3>
     <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
       @change="checkComputerAssembly" itemKey="assemblyId">
@@ -8,6 +7,7 @@
         <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
       </template>
     </draggable>
+    <ErrorsComponent></ErrorsComponent>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .list-group {
   border: 1px solid black;
 }
@@ -57,17 +57,17 @@ export default {
 .container,
 .row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .col-3 {
   width: 50%;
 }
 
-.configurator {
+/* .configurator {
   position: fixed;
   right: 0;
-}
+} */
 
 .column {
   display: flex;
