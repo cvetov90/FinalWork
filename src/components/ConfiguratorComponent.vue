@@ -116,7 +116,7 @@ export default {
 .configurator-wrapper {
   height: 50%;
   /* height: 80%; */
-  width: 40%;
+  width: 35%;
   background: rgb(248, 237, 232);
   display: flex;
   position: fixed;

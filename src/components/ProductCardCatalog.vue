@@ -69,7 +69,7 @@ img {
 
 .product-card {
     width: 100%;
-    height: 200px;
+    height: 250px;
     border-bottom: 1px solid #fe7200;
     display: flex;
     margin: 5px 0 10px;

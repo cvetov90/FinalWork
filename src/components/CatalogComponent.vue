@@ -1,13 +1,17 @@
 <template>
     <div class="col-3">
-        <div>
-            <h3>Каталог деталей</h3>
-        </div>
-        <div v-for="productType in Object.keys(data)" :key="productType">
-            <div class="product-type-string"><a href="#" @click="currentProductType = productType">{{ productTypeList.translate(productType) }}</a></div>
-        </div>
-
-            <div>
+        <div class="catalog">
+            <div class="catalog-menu-left">
+                <div>
+                    <h3>Каталог деталей</h3>
+                </div>
+                <div v-for="productType in Object.keys(data)" :key="productType">
+                    <div><a  :class="{active: isCurentProductType(productType)}" href="#" @click="currentProductType = productType">{{
+                            productTypeList.translate(productType)
+                    }}</a></div>
+                </div>
+            </div>
+            <div class="catalog-products">
                 <draggable class="list-group container" :list="data[currentProductType]"
                     :group="{ name: 'product', pull: 'clone', put: false }" :clone="genAssemblyId" itemKey="id">
                     <template #item="{ element }">
@@ -15,8 +19,8 @@
                     </template>
                 </draggable>
             </div>
-
-</div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -44,6 +48,15 @@ export default {
         genAssemblyId: function (evt) {
             evt.assemblyId = assemblyId++
             return Object.assign({}, evt)
+        },
+
+        isCurentProductType(productType) {
+            if(productType == this.currentProductType) {
+                return true
+            }
+            else {
+                return false
+            }
         }
     }
 }
@@ -65,17 +78,38 @@ export default {
 }
 
 .col-3 {
-    width: 50%;
+    width: 58%;
     /* border: 1px solid black; */
     /* position: relative; */
 }
 
-.product-type-string {
-    background: lightgray;
+.active {
+    /* background: lightgray; */
+    color: #fe7200;
 }
 
 /* .configurator {
     position: fixed;
     right: 0;
 } */
+
+.catalog {
+    /* width: 50%; */
+    display: flex;
+}
+
+.catalog-menu-left {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+
+.catalog-menu-left>div {
+    padding: 5px 0;
+}
+
+.catalog-products {
+    width: 70%;
+}
 </style>

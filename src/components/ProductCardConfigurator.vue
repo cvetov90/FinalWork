@@ -76,7 +76,7 @@ export default {
 
 .product-card-configurator {
     width: 100%;
-    height: 120px;
+    height: 150px;
     border-bottom: 1px solid #fe7200;
     display: flex;
     margin: 5px 0 10px;
