@@ -27,7 +27,15 @@ export default {
       })
       .catch(error => alert("Произошла ошибка при попытке загрузить JSON: \n" + error.name + " \n" + error.message))
 
-  }
+  },
+  // created() {
+  //   window.addEventListener('scroll', this.minimizedHeader)
+  // },
+  // methods: {
+  //   minimizedHeader() {
+  //     alert("работает")
+  //   }
+  // }
 }
 </script>
 <style>
