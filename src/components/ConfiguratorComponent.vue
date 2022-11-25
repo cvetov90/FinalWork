@@ -3,7 +3,7 @@
     <div class="col-3">
       <div class="configurator-title">
         <div><h3>Конфигуратор ПК</h3></div>
-        <div><button @click="assembly.clear()">Сбросить</button></div>
+        <div><ButtonActionOrange @click="assembly.clear()" button-name="Сбросить"></ButtonActionOrange></div>
       </div>
       <div class="summary">
         <div>Стоимость конфигурации:</div>
@@ -19,7 +19,7 @@
         </div>
         <div class="configurator">
           <draggable class="list-group list-group-constructor container" :list="assembly.get()" group="product"
-             itemKey="assemblyId">
+             @change="checkComputerAssembly" itemKey="assemblyId">
             <template #item="{ element }">
               <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
             </template>
@@ -36,6 +36,7 @@ import { assembly } from '@/models/assembly'
 import ProductCardConfigurator from '@/components/ProductCardConfigurator.vue'
 import { assemblyErrors } from '@/models/assemblyErrors'
 import ErrorsComponent from '@/components/ErrorsComponent.vue'
+import ButtonActionOrange from './ButtonActionOrange.vue'
 // import { assemblyErrors } from '@/models/assemblyErrors'
 
 export default {
@@ -43,7 +44,8 @@ export default {
   components: {
     draggable,
     ProductCardConfigurator,
-    ErrorsComponent
+    ErrorsComponent,
+    ButtonActionOrange
   },
   data() {
     return {
@@ -52,15 +54,14 @@ export default {
     };
   },
   methods: {
-    checkComputerAssembly: function () {
-      // console.log('work')
-      // if (evt.moved) {
-      //   return false
-      // }
-      // if (this.assembly.get().length == 0) {
-      //   assemblyErrors.clear()
-      // }
-      // assembly.checkAssembly()
+    checkComputerAssembly: function (evt) {
+      if (evt.moved) {
+        return false
+      }
+      if (this.assembly.get().length == 0) {
+        assemblyErrors.clear()
+      }
+      assembly.checkAssembly()
 
       // let block = document.getElementById('assembly-list')
       // if (this.errors.errorsArray.length) {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="content">
-            <div class="button-back"><a href="#" @click="goBack">Назад</a></div>
+            <div class="button-back"><ButtonActionWhite @click="goBack" button-name="Назад"></ButtonActionWhite></div>
                 <ProductCardFullDescription :productObject="productCard.productCard"></ProductCardFullDescription>
         </div>
     </div>
@@ -9,11 +9,13 @@
 <script>
 import { productCard } from '@/models/productCard';
 import ProductCardFullDescription from '@/components/ProductCardFullDescription.vue';
+import ButtonActionWhite from '@/components/ButtonActionWhite.vue';
 
 export default {
     name: "ProductCardFullView",
     components: {
-        ProductCardFullDescription
+        ProductCardFullDescription,
+        ButtonActionWhite
     },
     data() {
         return {

@@ -12,8 +12,8 @@
             </div>
             <!-- <div class="product-card-info-description" v-html="productFullDescription"></div> -->
             <div class="product-card-info-description">
-            <table>
-                <!-- <div v-for="property in productFullDescription" :key="property" class="product-card-info-description"> -->
+                <table>
+                    <!-- <div v-for="property in productFullDescription" :key="property" class="product-card-info-description"> -->
                     <tr v-for="property in productFullDescription" :key="property">
                         <td class="table-td-property">
                             {{ property[0] }}
@@ -22,7 +22,7 @@
                             {{ property[1] }}
                         </td>
                     </tr>
-            </table>
+                </table>
             </div>
         </div>
     </div>
@@ -154,9 +154,10 @@ export default {
 } */
 .table-td-property {
     /* width: 120%; */
-font-weight: bold;
-padding-right: 20px;
+    font-weight: bold;
+    padding-right: 20px;
 }
+
 /* 
 .product-card-info-action>a,
 .product-card-info-action>button {

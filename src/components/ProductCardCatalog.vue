@@ -15,11 +15,11 @@
             <div class="product-card-info-description" v-html="productShortDescription"></div>
             <div class="product-card-info-action">
                 <div>
-                    <ButtonAdd @click="addProduct(productObject)"></ButtonAdd>
+                    <ButtonActionWhite @click="addProduct(productObject)" button-name="Добавить в сборку"></ButtonActionWhite>
                 </div>
                 <div>
                     <RouterLink @click="productCard.productCard = productObject"
-                        :to="{ name: 'CatalogProductCard', params: { id: productObject.id } }">Подробнее</RouterLink>
+                        :to="{ name: 'CatalogProductCard', params: { id: productObject.id } }"><ButtonActionWhite button-name="Подробнее"></ButtonActionWhite></RouterLink>
                 </div>
             </div>
         </div>
@@ -29,7 +29,8 @@
 <script>
 import { productCard } from '@/models/productCard'
 import { assembly } from '@/models/assembly'
-import ButtonAdd from '@/components/ButtonAdd.vue'
+import ButtonActionWhite from '@/components/ButtonActionWhite.vue'
+
 export default {
     name: 'ProductCardCatalog',
     data() {
@@ -39,7 +40,7 @@ export default {
         }
     },
     components: {
-        ButtonAdd
+        ButtonActionWhite
     },
     props: {
         productObject: Object,

@@ -19,7 +19,7 @@
             <div class="product-card-configurator-info-description" v-html="productShortDescription"></div>
             <div class="product-card-configurator-info-action">
                 <div>
-                    <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete>
+                    <ButtonActionRed @click="deleteProduct(productObject)" button-name="Удалить"></ButtonActionRed>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
 <script>
 import { productCard } from '@/models/productCard'
 import { assembly } from '@/models/assembly'
-import ButtonDelete from './ButtonDelete.vue'
+import ButtonActionRed from './ButtonActionRed.vue'
 
 export default {
     name: 'ProductCardConfigurator',
@@ -39,7 +39,7 @@ export default {
         }
     },
     components: {
-        ButtonDelete
+        ButtonActionRed
     },
     props: {
         productObject: Object,
@@ -107,7 +107,7 @@ export default {
 .product-card-configurator-info-action {
     height: 20%;
     align-self: flex-end;
-    padding: 5px;
+    padding: 5px 5px 10px;
     display: flex;
     align-items: center;
     justify-content: center;

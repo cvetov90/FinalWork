@@ -393,7 +393,6 @@ export const assembly = reactive({
     }
 
     if (this.assemblyPowerSupply().length > 1) {
-      console.log(this.assemblyPowerSupply());
       this.ModalManualSelectArray = this.assemblyPowerSupply();
       this.ModalManualSelectMessage =
         "В компьютере может быть установлен только одна блок питания. Выберите наиболее подходящий блок питания из списка:";
@@ -425,7 +424,6 @@ export const assembly = reactive({
     }
 
     if (this.assemblyComputerCases().length > 1) {
-      console.log(this.assemblyComputerCases());
       this.ModalManualSelectArray = this.assemblyComputerCases();
       this.ModalManualSelectMessage =
         "Сборка может содержать только один корпус. Выберите наиболее подходящий корпус из саиска:";

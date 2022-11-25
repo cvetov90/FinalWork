@@ -11,7 +11,7 @@
                         </label>
                     </div>
                     <div class="select-button-div">
-                        <ButtonSelect @click="selectResultToAssembly"></ButtonSelect>
+                        <ButtonActionWhite @click="selectResultToAssembly" button-name="Выбрать"></ButtonActionWhite>
                     </div>
             </form>
         </div>
@@ -21,7 +21,7 @@
 <script>
 import { assembly } from '@/models/assembly'
 // import { assemblyErrors } from '@/models/assemblyErrors';
-import ButtonSelect from './ButtonSelect.vue';
+import ButtonActionWhite from './ButtonActionWhite.vue';
 import ProductCardModalManualSelect from './ProductCardModalManualSelect.vue';
 
 export default {
@@ -31,7 +31,7 @@ export default {
         ModalManualSelectMessage: String
     },
     components: {
-        ButtonSelect,
+        ButtonActionWhite,
         ProductCardModalManualSelect
     },
     data() {
