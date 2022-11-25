@@ -67,16 +67,20 @@ export default {
     background: rgba(15, 13, 13, 0.4);
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
 
 .select-area {
     position: absolute;
     overflow: auto;
     top: 10%;
-    left: 20%;
+    margin: 0 20%;
+    /* left: 20%; */
     background: rgba(255, 255, 255, 1);
     /* height: 70%; */
-    width: 60%;
+    /* width: 60%; */
     padding: 0 5%;
     display: flex;
     align-items: center;
