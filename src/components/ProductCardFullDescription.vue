@@ -1,5 +1,4 @@
 // Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
-
 <template>
     <div class="product-card">
         <div class="procuct-card-wrapper">
@@ -11,7 +10,20 @@
             <div class="product-card-info-title">
                 <h3>{{ productObject.model }}</h3>
             </div>
-            <div class="product-card-info-description" v-html="productFullDescription"></div>
+            <!-- <div class="product-card-info-description" v-html="productFullDescription"></div> -->
+            <div class="product-card-info-description">
+            <table>
+                <!-- <div v-for="property in productFullDescription" :key="property" class="product-card-info-description"> -->
+                    <tr v-for="property in productFullDescription" :key="property">
+                        <td class="table-td-property">
+                            {{ property[0] }}
+                        </td>
+                        <td>
+                            {{ property[1] }}
+                        </td>
+                    </tr>
+            </table>
+            </div>
         </div>
     </div>
 </template>
@@ -109,13 +121,13 @@ export default {
     width: 70%;
     display: flex;
     flex-direction: column;
-    /* padding: 10px; */
+    padding: auto;
 }
 
 .product-card-info-title {
-    height: 20%;
+    height: auto;
     align-self: flex-start;
-    padding: 10px;
+    padding: auto;
 }
 
 .product-card-info-description {
@@ -136,6 +148,15 @@ export default {
     padding: 10px;
 }
 
+
+/* .table {
+    width: 70vh;
+} */
+.table-td-property {
+    /* width: 120%; */
+font-weight: bold;
+padding-right: 20px;
+}
 /* 
 .product-card-info-action>a,
 .product-card-info-action>button {

@@ -19,9 +19,10 @@ export const productCard = reactive({
     let module = await import(`@/models/${productObject.productType}`)
     let moduleData = module[productObject.productType]
     moduleData.set(productObject)
-    moduleData.getFullDescription().forEach((value, key) => {
-                             this.productCardFullDescription += `${key}: ${value} <br>`
-                         })
-    return this.productCardFullDescription
+    // moduleData.getFullDescription().forEach((value, key) => {
+    //                          this.productCardFullDescription += `${key}: ${value} <br>`
+    //                      })
+    // return this.productCardFullDescription
+    return moduleData.getFullDescription()
   },
 });

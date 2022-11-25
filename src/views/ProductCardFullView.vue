@@ -33,7 +33,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 90%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .button-back {
