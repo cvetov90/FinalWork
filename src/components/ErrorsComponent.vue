@@ -1,6 +1,6 @@
 <template>
   <div v-if="errors.showFlag" class="column">
-    <div>Ошибки и предупреждения</div>
+    <div class="errors-title">Ошибки и предупреждения</div>
     <!-- <div><button @click="changeShowFlag">Показать</button></div> -->
     <div v-for="error in errors.errorsArray" :key="error">
       <div>{{ error.errorType }} : {{error.errorMessage}}</div>
@@ -46,5 +46,9 @@ export default {
   padding: 20px;
   /* min-height: 10%; */
   /* overflow-y: scroll; */
+}
+
+.errors-title {
+  padding-bottom: 10px;
 }
 </style>

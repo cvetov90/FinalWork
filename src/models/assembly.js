@@ -3,6 +3,7 @@ import { assemblyErrors } from "./assemblyErrors";
 
 export const assembly = reactive({
   assembly: [],
+  // assemblyPrice: 0,
   assemblyMotherboards() {
     return this.assembly.filter((item) => item.productType == "motherboard");
   },
@@ -46,7 +47,24 @@ export const assembly = reactive({
 
   clear() {
     this.assembly = [];
+    this.assemblyPrice = 0
     assemblyErrors.clear();
+  },
+
+  // scrollConfigurator() {
+  //   let block = document.getElementById('assembly-list')
+  //   if (assemblyErrors.errorsArray.length) {
+  //     block.scrollTop = 0
+  //   }
+  //   else {
+  //     block.scrollTop = block.scrollHeight
+  //   }
+  // },
+
+  calculateAssemblyPrice() {
+    let assemblyPrice = 0
+    this.assembly.forEach(item => assemblyPrice += Number(item.price.match(/\d+/)))
+    return assemblyPrice + " рублей"
   },
 
   checkAssembly() {

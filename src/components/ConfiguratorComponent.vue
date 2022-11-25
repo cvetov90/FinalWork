@@ -2,18 +2,24 @@
   <div class="configurator-wrapper">
     <div class="col-3">
       <div class="configurator-title">
-        <h3>Конфигуратор ПК</h3>
-        <button @click="assembly.clear()">Сбросить</button>
+        <div><h3>Конфигуратор ПК</h3></div>
+        <div><button @click="assembly.clear()">Сбросить</button></div>
       </div>
-      <div class="summary">Сумаарная информация</div>
+      <div class="summary">
+        <div>Стоимость конфигурации:</div>
+        <div>{{assembly.calculateAssemblyPrice()}}</div>
+      </div>
       <div id="assembly-list">
-        <div class="assembly-prompt" v-if="!assembly.get().length">Добавьте компоненты в сборку</div>
+        <div class="assembly-prompt" v-if="!assembly.get().length">
+          <div>Добавьте компоненты в сборку</div>
+          <div>Для этого нажмите кнопку "Добавить" в карточке товара или перетащите карточку в область под этим сообщенем</div>
+        </div>
         <div class="errors">
           <ErrorsComponent></ErrorsComponent>
         </div>
         <div class="configurator">
           <draggable class="list-group list-group-constructor container" :list="assembly.get()" group="product"
-            @change="checkComputerAssembly" itemKey="assemblyId">
+             itemKey="assemblyId">
             <template #item="{ element }">
               <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
             </template>
@@ -46,25 +52,25 @@ export default {
     };
   },
   methods: {
-    checkComputerAssembly: function (evt) {
-      if (evt.moved) {
-        // this.log(evt)
-        return false
-      }
-      if (this.assembly.get().length == 0) {
-        assemblyErrors.clear()
-      }
-      assembly.checkAssembly()
-      
-      let block = document.getElementById('assembly-list')
-      if (this.errors.errorsArray.length) {
-        block.scrollTop = 0
-        console.log("err")
-      }
-      else {
-        block.scrollTop = block.scrollHeight
-        console.log("ok")
-      }
+    checkComputerAssembly: function () {
+      // console.log('work')
+      // if (evt.moved) {
+      //   return false
+      // }
+      // if (this.assembly.get().length == 0) {
+      //   assemblyErrors.clear()
+      // }
+      // assembly.checkAssembly()
+
+      // let block = document.getElementById('assembly-list')
+      // if (this.errors.errorsArray.length) {
+      //   block.scrollTop = 0
+      //   console.log("err")
+      // }
+      // else {
+      //   block.scrollTop = block.scrollHeight
+      //   console.log("ok")
+      // }
     },
   },
   updated() {
@@ -78,6 +84,14 @@ export default {
     //   block.scrollTop = block.scrollHeight
     //   console.log("ok")
     // }
+    // assembly.scrollConfigurator()
+    let block = document.getElementById('assembly-list')
+    if (this.errors.errorsArray.length) {
+      block.scrollTop = 0
+    }
+    else {
+      block.scrollTop = block.scrollHeight
+    }
   }
 }
 </script>
@@ -85,6 +99,7 @@ export default {
 <style scoped>
 .list-group {
   border: 1px solid #dfdfe1;
+  background: rgb(245, 224, 214);;
 }
 
 .list-group-constructor {
@@ -107,7 +122,7 @@ export default {
   right: 5%;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  padding-bottom: 20px;
 
 }
 
@@ -151,12 +166,33 @@ export default {
 }
 
 .configurator-title,
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.configurator-title {
+  padding-bottom: 0 !important;
+}
+
+.configurator-title,
 .summary,
 /* .list-group, */
 /* .configurator */
 .assembly-prompt {
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid #dfdfe1;
+}
+
+.assembly-prompt {
+  font-weight: bold;
+  color: #fe7200;
+}
+
+.assembly-prompt>:nth-child(1) {
+  text-transform: uppercase;
+  padding-bottom: 7px;
 }
 
 #assembly-list {

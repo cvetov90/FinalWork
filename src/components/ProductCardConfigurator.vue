@@ -6,18 +6,18 @@
 // Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
 
 <template>
-    <div class="product-card">
-        <div class="procuct-card-wrapper">
+    <div class="product-card-configurator">
+        <!-- <div class="procuct-card-wrapper">
             <div class="product-card-image">
                 <img :src="productObject.productImageSrc">
             </div>
-        </div>
-        <div class="product-card-info">
-            <div class="product-card-info-title">
-                <h3>{{ productObject.model }}</h3>
+        </div> -->
+        <div class="product-card-configurator-info">
+            <div class="product-card-configurator-info-title">
+                {{ productObject.model }}
             </div>
-            <div class="product-card-info-description" v-html="productShortDescription"></div>
-            <div class="product-card-info-action">
+            <div class="product-card-configurator-info-description" v-html="productShortDescription"></div>
+            <div class="product-card-configurator-info-action">
                 <div>
                     <ButtonDelete @click="deleteProduct(productObject)"></ButtonDelete>
                 </div>
@@ -73,6 +73,45 @@ export default {
 </script>
 
 <style scoped>
+
+.product-card-configurator {
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #fe7200;
+    display: flex;
+    margin: 5px 0 10px;
+}
+.product-card-configurator-info {
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card-configurator-info-title {
+    height: 20%;
+    align-self: flex-start;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.product-card-configurator-info-description {
+    height: 60%;
+    align-self: flex-end;
+    text-align: left;
+    padding: 5px 10px 0;
+}
+
+.product-card-configurator-info-action {
+    height: 20%;
+    align-self: flex-end;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* div {
     border: 1px solid black;
     overflow: scroll;

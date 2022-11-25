@@ -88,7 +88,7 @@ export default {
 }
 
 .select-message{
-padding: 30px 5px 30px;
+padding: 40px 5px 30px;
 font-weight: bold;
 }
 
@@ -105,6 +105,6 @@ font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 30px 5px;
+    padding: 20px 5px 40px;
 }
 </style>
