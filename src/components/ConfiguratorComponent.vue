@@ -3,19 +3,22 @@
     <div class="col-3">
       <div class="configurator-title">
         <h3>Конфигуратор ПК</h3>
+        <button @click="assembly.clear()">Сбросить</button>
       </div>
       <div class="summary">Сумаарная информация</div>
-      <div class="errors">
-        <ErrorsComponent></ErrorsComponent>
-      </div>
-      <div class="assembly-prompt" v-if="!assembly.length">Добавьте компоненты в сборку</div>
-      <div class="configurator">
-        <draggable class="list-group list-group-constructor container" :list="assembly" group="product"
-          @change="checkComputerAssembly" itemKey="assemblyId">
-          <template #item="{ element }">
-            <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
-          </template>
-        </draggable>
+      <div id="assembly-list">
+        <div class="assembly-prompt" v-if="!assembly.get().length">Добавьте компоненты в сборку</div>
+        <div class="errors">
+          <ErrorsComponent></ErrorsComponent>
+        </div>
+        <div class="configurator">
+          <draggable class="list-group list-group-constructor container" :list="assembly.get()" group="product"
+            @change="checkComputerAssembly" itemKey="assemblyId">
+            <template #item="{ element }">
+              <ProductCardConfigurator :product-object="element"></ProductCardConfigurator>
+            </template>
+          </draggable>
+        </div>
       </div>
     </div>
   </div>
@@ -27,6 +30,7 @@ import { assembly } from '@/models/assembly'
 import ProductCardConfigurator from '@/components/ProductCardConfigurator.vue'
 import { assemblyErrors } from '@/models/assemblyErrors'
 import ErrorsComponent from '@/components/ErrorsComponent.vue'
+// import { assemblyErrors } from '@/models/assemblyErrors'
 
 export default {
   name: "СonfiguratorComponent",
@@ -37,7 +41,8 @@ export default {
   },
   data() {
     return {
-      assembly: assembly.get(),
+      assembly: assembly,
+      errors: assemblyErrors,
     };
   },
   methods: {
@@ -51,6 +56,15 @@ export default {
       }
       assembly.checkAssembly()
     },
+  },
+  updated() {
+    let block = document.getElementById('assembly-list')
+    if (this.errors.errorsArray.length) {
+      block.scrollTop = 0
+    }
+    else {
+      block.scrollTop = block.scrollHeight
+    }
   }
 }
 </script>
@@ -70,7 +84,7 @@ export default {
   flex-direction: column;
 }
 
-.configurator-wrapper{
+.configurator-wrapper {
   height: 50%;
   /* height: 80%; */
   width: 40%;
@@ -83,6 +97,7 @@ export default {
   padding: 20px 0;
 
 }
+
 .col-3 {
   height: 100%;
   width: 90%;
@@ -93,7 +108,7 @@ export default {
   /* position: fixed; */
   /* right: 5%; */
   /* background: rgb(248, 237, 232); */
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .configurator {
@@ -107,7 +122,7 @@ export default {
 }
 
 .errors {
-  /* min-height: 10%; */
+  /* max-height: 10%; */
   /* overflow-y: scroll; */
 }
 
@@ -129,5 +144,13 @@ export default {
 .assembly-prompt {
   padding: 20px;
   border-bottom: 1px solid #dfdfe1;
+}
+
+#assembly-list {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 </style>

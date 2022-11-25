@@ -19,6 +19,10 @@ export default {
       // showFlag: false
     };
   },
+  created() {
+    // let block = document.getElementById('configurator')
+    // block.scrollTop = 0
+  }
   // methods: {
   //   checkErrors() {
   //     if (assemblyErrors.errorsArray.length) {
