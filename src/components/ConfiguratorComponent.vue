@@ -12,7 +12,7 @@
       <div id="assembly-list">
         <div class="assembly-prompt" v-if="!assembly.get().length">
           <div>Добавьте компоненты в сборку</div>
-          <div>Для этого нажмите кнопку "Добавить" в карточке товара или перетащите карточку в область под этим сообщенем</div>
+          <div>Нажмите кнопку "Добавить" в карточке товара или перетащите карточку в область под этим сообщенем</div>
         </div>
         <div class="errors">
           <ErrorsComponent></ErrorsComponent>

@@ -13,6 +13,7 @@
                 <h3>{{ productObject.model }}</h3>
             </div>
             <div class="product-card-info-description" v-html="productShortDescription"></div>
+            <div class="price">Цена: {{productObject.price}}</div>
             <div class="product-card-info-action">
                 <div>
                     <ButtonActionWhite @click="addProduct(productObject)" button-name="Добавить в сборку"></ButtonActionWhite>
@@ -130,6 +131,12 @@ img {
 
 .product-card-info-action>div {
     padding: 10px;
+}
+
+.price {
+    font-weight: bold;
+    align-self: flex-start;
+    padding-left: 10px;
 }
 
 /* 

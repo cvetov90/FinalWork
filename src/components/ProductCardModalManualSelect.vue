@@ -10,6 +10,7 @@
                 <h3>{{ productObject.model }}</h3>
             </div>
             <div class="product-card-info-description" v-html="productShortDescription"></div>
+            <div class="price">Цена: {{productObject.price}}</div>
         </div>
     </div>
 </template>
@@ -91,4 +92,12 @@ export default {
     justify-content: flex-start;
     grid-area: b;
 } */
+
+.product-card-info-description {
+    height: 40%;
+}
+
+.price {
+    height: 20%;
+}
 </style>

@@ -18,6 +18,7 @@
             </div>
             <div class="product-card-configurator-info-description" v-html="productShortDescription"></div>
             <div class="product-card-configurator-info-action">
+                <div class="price">Цена: {{productObject.price}}</div>
                 <div>
                     <ButtonActionRed @click="deleteProduct(productObject)" button-name="Удалить"></ButtonActionRed>
                 </div>
@@ -106,11 +107,18 @@ export default {
 
 .product-card-configurator-info-action {
     height: 20%;
+    width: 100%;
     align-self: flex-end;
     padding: 5px 5px 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.price {
+    font-weight: bold;
+    align-self: flex-start;
+    padding-left: 20px;
 }
 /* div {
     border: 1px solid black;
