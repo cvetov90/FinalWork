@@ -71,7 +71,7 @@ img {
     height: 200px;
     border-bottom: 1px solid #fe7200;
     display: flex;
-    margin: 5px 0;
+    margin: 5px 0 10px;
     /* margin: 15px; */
     /* border-radius: 30px; */
     /* box-shadow: 5px 5px 5px gray; */

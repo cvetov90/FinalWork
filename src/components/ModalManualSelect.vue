@@ -2,7 +2,7 @@
     <div class="background">
         <div class="select-area">
             <form>
-                    <div>{{ModalManualSelectMessage}}</div>
+                    <div class="select-message">{{ModalManualSelectMessage}}</div>
                     <div class="select-row" v-for="product in ModalManualSelectArray" :key="product.assemblyId">
                         <input type="radio" :id="product.assemblyId" name="products-group" :value="product"
                             v-model="ModalManualSelectResult">
@@ -10,7 +10,7 @@
                             <ProductCardModalManualSelect :productObject="product"></ProductCardModalManualSelect>
                         </label>
                     </div>
-                    <div>
+                    <div class="select-button-div">
                         <ButtonSelect @click="selectResultToAssembly"></ButtonSelect>
                     </div>
             </form>
@@ -47,9 +47,13 @@ export default {
             this.ModalManualSelectArray.forEach(item => assembly.assembly.splice(assembly.assembly.indexOf(item), 1))
             assembly.add(this.ModalManualSelectResult)
             assembly.ModalManualSelectShowFlag = false
+            document.body.style.overflow = 'auto';
             // assembly.checkAssembly()
         },
     },
+    created(){
+        document.body.style.overflow = 'hidden';
+    }
 }
 </script>
 
@@ -71,12 +75,17 @@ export default {
     top: 10%;
     left: 20%;
     background: rgba(255, 255, 255, 1);
-    height: 70%;
+    /* height: 70%; */
     width: 60%;
-    padding: 20px;
+    padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.select-message{
+padding: 30px 5px 30px;
+font-weight: bold;
 }
 
 .select-row {
@@ -85,5 +94,13 @@ export default {
 
 .label-row {
     width: 100%;
+    /* margin: 10px; */
+}
+
+.select-button-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 30px 5px;
 }
 </style>
