@@ -51,20 +51,33 @@ export default {
         // this.log(evt)
         return false
       }
-      if (this.assembly.length == 0) {
+      if (this.assembly.get().length == 0) {
         assemblyErrors.clear()
       }
       assembly.checkAssembly()
+      
+      let block = document.getElementById('assembly-list')
+      if (this.errors.errorsArray.length) {
+        block.scrollTop = 0
+        console.log("err")
+      }
+      else {
+        block.scrollTop = block.scrollHeight
+        console.log("ok")
+      }
     },
   },
   updated() {
-    let block = document.getElementById('assembly-list')
-    if (this.errors.errorsArray.length) {
-      block.scrollTop = 0
-    }
-    else {
-      block.scrollTop = block.scrollHeight
-    }
+    // let block = document.getElementById('assembly-list')
+    // console.log(this.errors.errorsArray.length)
+    // if (this.errors.errorsArray.length) {
+    //   block.scrollTop = 0
+    //   console.log("err")
+    // }
+    // else {
+    //   block.scrollTop = block.scrollHeight
+    //   console.log("ok")
+    // }
   }
 }
 </script>

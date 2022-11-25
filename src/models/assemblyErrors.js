@@ -26,6 +26,7 @@ export const assemblyErrors = reactive({
   
   clear() {
     this.errorsSet.clear()
+    this.errorsArray = []
     this.showFlag = false
   }
 });
