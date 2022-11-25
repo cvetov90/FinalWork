@@ -4,19 +4,17 @@
             <h3>Каталог деталей</h3>
         </div>
         <div v-for="productType in Object.keys(data)" :key="productType">
-            <div class="product-type-string"><a href="#" @click="currentProductType = productType">{{ productTypeList.translate(productType) }}</a></div>
-        </div>
-
+            <div class="product-type-string">{{ productTypeList.translate(productType) }}</div>
             <div>
-                <draggable class="list-group container" :list="data[currentProductType]"
+                <draggable class="list-group container" :list="data[productType]"
                     :group="{ name: 'product', pull: 'clone', put: false }" :clone="genAssemblyId" itemKey="id">
                     <template #item="{ element }">
                         <ProductCardCatalog :product-object="element"></ProductCardCatalog>
                     </template>
                 </draggable>
             </div>
-
-</div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -36,8 +34,7 @@ export default {
         return {
             data: DataStore,
             productTypeList: productTypeList,
-            show: false,
-            currentProductType: 'motherboard'
+            show: false
         };
     },
     methods: {
