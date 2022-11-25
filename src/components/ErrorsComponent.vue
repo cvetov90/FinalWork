@@ -3,7 +3,7 @@
     <div class="errors-title">Ошибки и предупреждения</div>
     <!-- <div><button @click="changeShowFlag">Показать</button></div> -->
     <div v-for="error in errors.errorsArray" :key="error">
-      <div>{{ error.errorType }} : {{error.errorMessage}}</div>
+      <div :class="{'is-warning': isWarning(error.errorType)}">{{ error.errorType }} : {{error.errorMessage}}</div>
       <br>
     </div>
   </div>
@@ -19,6 +19,17 @@ export default {
       // showFlag: false
     };
   },
+  methods: {
+    isWarning(errorType) {
+      if(errorType == "Предупреждение") {
+        return true
+      }
+      else {
+        return false
+      }
+    }
+  },
+
   created() {
     // let block = document.getElementById('configurator')
     // block.scrollTop = 0
@@ -40,7 +51,7 @@ export default {
 .column {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
+  font-weight: normal !important;
   color: red;
   border-bottom: 1px solid #dfdfe1;
   padding: 20px;
@@ -50,5 +61,10 @@ export default {
 
 .errors-title {
   padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.is-warning {
+  color: rgb(153, 151, 51) !important;
 }
 </style>

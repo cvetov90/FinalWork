@@ -63,9 +63,7 @@ a {
   ;
 }
 
-a:hover,
-a:focus,
-a:active {
+a:hover {
   color: #fe7200;
 }
 
