@@ -5,10 +5,7 @@
         <div><h3>Конфигуратор ПК</h3></div>
         <div><ButtonActionOrange @click="assembly.clear()" button-name="Сбросить"></ButtonActionOrange></div>
       </div>
-      <div class="summary">
-        <div>Стоимость конфигурации:</div>
-        <div>{{assembly.calculateAssemblyPrice()}}</div>
-      </div>
+<!-- summary -->
       <div id="assembly-list">
         <div class="assembly-prompt" v-if="!assembly.get().length">
           <div>Добавьте компоненты в сборку</div>
@@ -26,6 +23,12 @@
           </draggable>
         </div>
       </div>
+
+      <div class="summary">
+        <div class="summary-message">Стоимость конфигурации:</div>
+        <div>{{assembly.calculateAssemblyPrice()}}</div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -124,7 +127,6 @@ export default {
   align-items: center;
   justify-content: center;
   padding-bottom: 20px;
-
 }
 
 .col-3 {
@@ -178,12 +180,15 @@ export default {
 }
 
 .configurator-title,
-.summary,
 /* .list-group, */
 /* .configurator */
 .assembly-prompt {
   padding: 15px;
   border-bottom: 1px solid #dfdfe1;
+}
+
+.summary {
+  padding: 15px;
 }
 
 .assembly-prompt {
@@ -202,5 +207,9 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+
+.summary-message {
+  font-weight: bold;
 }
 </style>
