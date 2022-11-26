@@ -1,9 +1,17 @@
 <template>
   <div class="home">
-    <h1>Итоговая работа</h1>
+    <h1>Тема проекта: <br>«Разработка клиентской части сайта конфигуратора компьютера»</h1>
     <table class="info">
       <tr>
+        <td class="bold">
+          Студент:
+        </td>
         <td>
+          Цветов Григорий Владимирович
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">
           Курс:
         </td>
         <td>
@@ -11,21 +19,16 @@
         </td>
       </tr>
       <tr>
-        <td>Специализация:</td>
-        <td>Frontend</td>
+        <td class="bold">Направление обучения:</td>
+        <td>Frontend-разработка</td>
       </tr>
       <tr>
-        <td>
-          Студент:
-        </td>
-        <td>
-          Цветов Григорий Владимирович
-        </td>
+        <td class="bold">Образовательная организация:</td>
+        <td>Академия "Цифра"</td>
       </tr>
     </table>
     <br>
-    <h3>Образовательная организация: Академия "Цифра"</h3>
-    <h3>город Ижевск, 2022 г.</h3>
+    <h3>Ижевск, 2022 г.</h3>
   </div>
 </template>
 
@@ -44,6 +47,9 @@ export default {
   justify-content: center; */
 }
 
+h1 {
+  text-align: center;
+}
 .info {
   /* margin-left: auto; */
   /* margin-right: auto; */
@@ -53,5 +59,9 @@ export default {
 td {
   font-size: 20px;
   padding: 10px;
+}
+
+.bold {
+  font-weight: bold;
 }
 </style>

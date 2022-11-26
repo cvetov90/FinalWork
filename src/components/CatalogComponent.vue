@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import {assembly} from '@/models/assembly'
 import draggable from 'vuedraggable'
 import { DataStore } from '@/DataStore.js'
 import ProductCardCatalog from '@/components/ProductCardCatalog.vue'
@@ -38,6 +39,7 @@ export default {
     },
     data() {
         return {
+            assembly: assembly,
             data: DataStore,
             productTypeList: productTypeList,
             show: false,

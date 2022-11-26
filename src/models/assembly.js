@@ -38,6 +38,15 @@ export const assembly = reactive({
     }
   },
 
+  assemblyId: 1,
+
+  genAssemblyId(evt) {
+    console.log(this.assemblyId)
+    evt.assemblyId = this.assemblyId++
+    console.log(evt)
+    return Object.assign({}, evt)
+},
+
   add(element) {
     this.assembly.push(element);
     assemblyErrors.clear();

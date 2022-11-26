@@ -15,7 +15,8 @@ export default {
     HeaderComponent
   },
   setup() {
-    fetch('http://localhost:8080/pc_details.json')
+    // fetch('http://localhost:8080/pc_details.json')
+    fetch('http://i90906k8.beget.tech/pc_details.json')
       .then(response => response.json())
       .then(data => {
         for (let key in data) {
