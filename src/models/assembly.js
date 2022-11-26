@@ -29,6 +29,15 @@ export const assembly = reactive({
   ModalManualSelectMessage: "",
   ModalManualSelectShowFlag: false,
 
+  assemblySucces() {
+    if(this.assemblyMotherboards().length && this.assemblyPowerSupply().length && this.assemblyComputerCases().length && this.assemblyCpu().length && this.assemblyRam().length && (this.assemblyHdd().length || this.assemblySsd().length) && (assemblyErrors.errorsArray.length == 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  },
+
   add(element) {
     this.assembly.push(element);
     assemblyErrors.clear();

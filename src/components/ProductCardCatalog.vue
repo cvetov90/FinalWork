@@ -13,14 +13,17 @@
                 <h3>{{ productObject.model }}</h3>
             </div>
             <div class="product-card-info-description" v-html="productShortDescription"></div>
-            <div class="price">Цена: {{productObject.price}}</div>
+            <div class="price">Цена: {{ productObject.price }}</div>
             <div class="product-card-info-action">
                 <div>
-                    <ButtonActionWhite @click="addProduct(productObject)" button-name="Добавить в сборку"></ButtonActionWhite>
+                    <ButtonActionWhite @click="addProduct(productObject)" button-name="Добавить в сборку">
+                    </ButtonActionWhite>
                 </div>
                 <div>
                     <RouterLink @click="productCard.productCard = productObject"
-                        :to="{ name: 'CatalogProductCard', params: { id: productObject.id } }"><ButtonActionWhite button-name="Подробнее"></ButtonActionWhite></RouterLink>
+                        :to="{ name: 'CatalogProductCard', params: { id: productObject.id } }">
+                        <ButtonActionWhite button-name="Подробнее"></ButtonActionWhite>
+                    </RouterLink>
                 </div>
             </div>
         </div>

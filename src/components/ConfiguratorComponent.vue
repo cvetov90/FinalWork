@@ -14,6 +14,9 @@
         <div class="errors">
           <ErrorsComponent></ErrorsComponent>
         </div>
+
+        <div class="assembly-succes" v-if="assembly.assemblySucces()">Сборка содержит все необходимые компоненты и они совместимы между собой</div>
+
         <div class="configurator">
           <draggable class="list-group list-group-constructor container" :list="assembly.get()" group="product"
              @change="checkComputerAssembly" itemKey="assemblyId">
@@ -90,7 +93,7 @@ export default {
     // }
     // assembly.scrollConfigurator()
     let block = document.getElementById('assembly-list')
-    if (this.errors.errorsArray.length) {
+    if (this.errors.errorsArray.length || assembly.assemblySucces()) {
       block.scrollTop = 0
     }
     else {
@@ -182,7 +185,8 @@ export default {
 .configurator-title,
 /* .list-group, */
 /* .configurator */
-.assembly-prompt {
+.assembly-prompt,
+.assembly-succes {
   padding: 15px;
   border-bottom: 1px solid #dfdfe1;
 }
@@ -194,6 +198,10 @@ export default {
 .assembly-prompt {
   font-weight: bold;
   color: #fe7200;
+}
+
+.assembly-succes {
+  color: green;
 }
 
 .assembly-prompt>:nth-child(1) {
