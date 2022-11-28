@@ -17,11 +17,9 @@ export default {
 
 <style scoped>
 .button-add {
-    /* padding: 5px 10px; */
     border: #fe7200;
     background: #fe7200;
     color: white;
-    /* border-radius: 5px; */
 }
 
 .button-add:hover {

@@ -1,4 +1,3 @@
-// Цену собрать из двух свойств "Цена" и "Валюта", рассмативать их как отдельные объекты
 <template>
     <div class="product-card">
         <div class="procuct-card-wrapper">
